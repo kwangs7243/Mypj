@@ -8,6 +8,20 @@ Naive Bayes 기반 한국어 리뷰 감성 분석 웹서비스 프로젝트입�
 
 이 프로젝트의 핵심 목표는 단순 구현이 아니라, 프로젝트 전체 구조를 직접 통제하면서 AI 협업으로 완성까지 밀어보는 것입니다.
 
+## Repository
+
+GitHub repository:
+
+```text
+https://github.com/kwangs7243/Mypj.git
+```
+
+다른 PC에서 이어서 작업할 때는 저장소를 clone한 뒤 프로젝트 폴더를 엽니다.
+
+```bash
+git clone https://github.com/kwangs7243/Mypj.git
+```
+
 ## MVP Scope
 
 1. 한국어 리뷰 데이터셋 준비

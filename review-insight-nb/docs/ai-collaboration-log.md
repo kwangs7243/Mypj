@@ -15,7 +15,22 @@
 - 백엔드는 Python + FastAPI를 사용한다.
 - 프론트엔드는 React + Vite를 사용한다.
 - 머신러닝은 scikit-learn의 Naive Bayes 계열 모델을 사용한다.
-- 커밋 메시지는 `type: 한글 설명` 형식을 사용한다.
+- 커밋 메시지는 `type: 작업 요약` 형식을 사용한다.
+- GitHub private repository는 `https://github.com/kwangs7243/Mypj.git`를 사용한다.
+
+### GitHub
+
+원격 저장소:
+
+```text
+https://github.com/kwangs7243/Mypj.git
+```
+
+다른 PC에서 이어서 작업할 때:
+
+```bash
+git clone https://github.com/kwangs7243/Mypj.git
+```
 
 ### Next Actions
 
@@ -24,3 +39,4 @@
 3. 백엔드 기본 FastAPI 앱 생성
 4. 모델 학습 스크립트 작성
 5. 프론트엔드 Vite 앱 생성
+
