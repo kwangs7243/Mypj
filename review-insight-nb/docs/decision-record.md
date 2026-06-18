@@ -6,42 +6,58 @@
 
 Reason:
 
-- 텍스트 분류 입문 모델로 설명하기 쉽다.
-- CountVectorizer 또는 TfidfVectorizer와 연결해 전체 머신러닝 흐름을 이해하기 좋다.
-- 포트폴리오 면접에서 모델 선택 이유를 설명하기 적당하다.
+- It is simple enough to explain in a portfolio interview.
+- It works naturally with `CountVectorizer` or `TfidfVectorizer`.
+- It is a good first text classification model for understanding the full ML flow.
 
 ### Build the MVP Before Advanced Features
 
 Reason:
 
-- 사용자가 프로젝트를 끝까지 완성한 경험이 부족하다고 판단했기 때문에, 기능을 크게 벌리기보다 먼저 완성 가능한 단위를 만든다.
-- CSV 업로드, DB, 로그인, 배포는 MVP 이후 확장 단계로 둔다.
+- The first goal is completing a working project, not adding every possible feature.
+- CSV upload, database, authentication, and deployment will come after the basic review prediction flow works.
 
 ### Keep Continuity in Markdown
 
 Reason:
 
-- 다른 PC에서 작업하거나 Codex 세션이 바뀌어도 프로젝트 맥락을 유지하기 위해 문서 기반 진행 기록을 남긴다.
+- The project may continue on another PC.
+- Codex context may not carry across devices or sessions.
+- Markdown notes make the next session easier to recover.
 
 ### Use uv for Backend Dependency Management
 
 Reason:
 
-- 사용자가 이미 다뤄본 도구이므로 초기 환경 구축 부담을 줄일 수 있다.
-- `pyproject.toml`과 `uv.lock`을 기준으로 학원 PC와 집 PC의 환경을 재현하기 쉽다.
-- Python 백엔드와 Node 프론트엔드의 패키지 관리를 명확히 분리할 수 있다.
+- The user already knows `uv`.
+- `pyproject.toml` and `uv.lock` make the backend environment reproducible across home and academy PCs.
+- Python backend dependencies stay separate from future Node frontend dependencies.
 
 ### Build the Backend API Skeleton Before Model Integration
 
 Reason:
 
-- 이번 프로젝트의 목표는 모델 실험만이 아니라 웹서비스 완성이다.
-- 먼저 API 요청/응답 구조를 세우면 이후 모델을 어디에 연결해야 하는지 명확해진다.
-- Flask에서 경험한 라우트, DTO, 서비스 계층 감각을 FastAPI 구조로 자연스럽게 확장할 수 있다.
+- This project is a web service, not only an ML experiment.
+- Defining request and response schemas first makes the API contract clear.
+- Flask route, DTO, and service-layer experience maps well to FastAPI.
 
-### Use English Commit Types with Korean Summaries
+### Use joblib for Model Persistence
 
 Reason:
 
-- 커밋 타입은 일반적인 Git 컨벤션을 따르고, 설명은 한글로 남겨 학습 과정과 작업 의도를 빠르게 이해한다.
-- 포트폴리오와 면접에서 형상관리 기준을 설명하기 쉽다.
+- It is similar in spirit to `pickle`, but common for scikit-learn model persistence.
+- It can save both the trained model and the fitted vectorizer.
+- It keeps the training step and API loading step clearly separated.
+
+Security note:
+
+- Do not load untrusted `.joblib` or `.pkl` files.
+
+### Build ML Training Before API Integration
+
+Reason:
+
+- The ML layer should run independently from FastAPI and React.
+- `backend/ml/train_model.py` should train, evaluate, and save model artifacts first.
+- After that, `model_loader.py` can load saved `.joblib` files for API prediction.
+

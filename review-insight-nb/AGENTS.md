@@ -34,8 +34,20 @@ This repository is a portfolio-oriented review sentiment analysis web service us
 When making meaningful progress, update:
 
 - `docs/ai-collaboration-log.md`
+- `docs/next-session.md` before stopping for the day or switching PCs
 - `docs/decision-record.md` when a design choice is made
 - `README.md` when setup or usage changes
+
+## Current Next Step
+
+Continue with the ML layer, not frontend.
+
+Build `backend/ml/train_model.py` as an independent script before connecting the model to FastAPI. The script should train a Naive Bayes model, save the model and vectorizer with `joblib`, and be runnable with:
+
+```bash
+cd review-insight-nb/backend
+uv run python ml/train_model.py
+```
 
 ## Git Rules
 
