@@ -1,11 +1,17 @@
 from fastapi import FastAPI
 
-from app.schemas import HealthResponse, PredictRequest, PredictResponse
+from app.model_loader import get_model_info
+from app.schemas import (
+    HealthResponse,
+    ModelInfoResponse,
+    PredictRequest,
+    PredictResponse,
+)
 from app.services.sentiment_service import predict_sentiment
 
 app = FastAPI(
     title="Review Insight NB API",
-    description="Naive Bayes 기반 리뷰 감성 분석 API",
+    description="Review sentiment analysis API with a Naive Bayes model",
     version="0.1.0",
 )
 
@@ -19,3 +25,7 @@ def health_check() -> HealthResponse:
 def predict(request: PredictRequest) -> PredictResponse:
     return predict_sentiment(request)
 
+
+@app.get("/api/model-info", response_model=ModelInfoResponse)
+def model_info() -> ModelInfoResponse:
+    return get_model_info()

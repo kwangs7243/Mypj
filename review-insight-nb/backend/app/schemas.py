@@ -5,12 +5,18 @@ class HealthResponse(BaseModel):
     status: str
 
 
+class ModelInfoResponse(BaseModel):
+    model: str
+    vectorizer: str
+    status: str
+    trained: bool
+
+
 class PredictRequest(BaseModel):
-    text: str = Field(..., min_length=1, description="분석할 리뷰 텍스트")
+    text: str = Field(..., min_length=1, description="Review text to analyze")
 
 
 class PredictResponse(BaseModel):
     label: str
     confidence: float
     probabilities: dict[str, float]
-

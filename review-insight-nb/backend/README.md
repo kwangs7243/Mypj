@@ -1,23 +1,29 @@
 # Backend
 
-FastAPI 서버와 머신러닝 모델 학습 코드를 관리합니다.
+FastAPI backend for the review sentiment analysis service.
 
 ## Environment
 
-이 백엔드는 `uv`를 기준으로 Python 가상환경과 패키지를 관리합니다.
+This backend uses `uv` for Python dependency and virtual environment management.
 
 ```bash
 cd review-insight-nb/backend
 uv sync
 ```
 
-개발 서버 실행:
+Run the development server:
 
 ```bash
 uv run uvicorn app.main:app --reload
 ```
 
-서버 실행 후 확인:
+If you are in the repository root, run:
+
+```bash
+uv --directory review-insight-nb/backend run uvicorn app.main:app --reload
+```
+
+Check the API:
 
 ```text
 http://127.0.0.1:8000/health
@@ -40,9 +46,28 @@ Response:
 }
 ```
 
+### Model Info
+
+This endpoint is a placeholder until the real Naive Bayes model is trained and connected.
+
+```http
+GET /api/model-info
+```
+
+Response:
+
+```json
+{
+  "model": "Multinomial Naive Bayes",
+  "vectorizer": "TfidfVectorizer",
+  "status": "not_trained",
+  "trained": false
+}
+```
+
 ### Predict Sentiment
 
-현재는 모델 연결 전 더미 예측 로직입니다. 이후 학습된 Naive Bayes 모델을 연결합니다.
+This endpoint currently uses temporary keyword-based dummy logic. It will later use the trained Naive Bayes model.
 
 ```http
 POST /api/predict
@@ -74,16 +99,16 @@ Response:
 ```text
 app/
 ├─ main.py
+├─ model_loader.py
 ├─ schemas.py
 └─ services/
    └─ sentiment_service.py
 ```
 
-## Responsibilities
+## File Roles
 
-- 리뷰 감성 예측 API 제공
-- 요청/응답 DTO 관리
-- 학습된 모델과 벡터라이저 로드
-- 리뷰 텍스트 전처리
-- 모델 학습 및 평가 스크립트 관리
+- `main.py`: FastAPI app object and API route definitions.
+- `schemas.py`: Pydantic request and response DTOs.
+- `model_loader.py`: Model status and future model-loading logic.
+- `services/sentiment_service.py`: Sentiment prediction logic.
 
