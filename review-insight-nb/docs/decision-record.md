@@ -23,6 +23,22 @@ Reason:
 
 - 다른 PC에서 작업하거나 Codex 세션이 바뀌어도 프로젝트 맥락을 유지하기 위해 문서 기반 진행 기록을 남긴다.
 
+### Use uv for Backend Dependency Management
+
+Reason:
+
+- 사용자가 이미 다뤄본 도구이므로 초기 환경 구축 부담을 줄일 수 있다.
+- `pyproject.toml`과 `uv.lock`을 기준으로 학원 PC와 집 PC의 환경을 재현하기 쉽다.
+- Python 백엔드와 Node 프론트엔드의 패키지 관리를 명확히 분리할 수 있다.
+
+### Build the Backend API Skeleton Before Model Integration
+
+Reason:
+
+- 이번 프로젝트의 목표는 모델 실험만이 아니라 웹서비스 완성이다.
+- 먼저 API 요청/응답 구조를 세우면 이후 모델을 어디에 연결해야 하는지 명확해진다.
+- Flask에서 경험한 라우트, DTO, 서비스 계층 감각을 FastAPI 구조로 자연스럽게 확장할 수 있다.
+
 ### Use English Commit Types with Korean Summaries
 
 Reason:

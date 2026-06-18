@@ -17,6 +17,7 @@
 - 머신러닝은 scikit-learn의 Naive Bayes 계열 모델을 사용한다.
 - 커밋 메시지는 `type: 작업 요약` 형식을 사용한다.
 - GitHub private repository는 `https://github.com/kwangs7243/Mypj.git`를 사용한다.
+- 백엔드 패키지 관리는 `requirements.txt` 대신 `uv`, `pyproject.toml`, `uv.lock`을 기준으로 한다.
 
 ### GitHub
 
@@ -32,11 +33,31 @@ https://github.com/kwangs7243/Mypj.git
 git clone https://github.com/kwangs7243/Mypj.git
 ```
 
+### Backend Setup
+
+완료한 작업:
+
+- `uv init --bare`로 백엔드 Python 프로젝트 초기화
+- `.venv` 생성
+- FastAPI, uvicorn, pandas, scikit-learn, joblib 설치
+- FastAPI 테스트용 개발 의존성 `httpx2` 추가
+- `GET /health` 구현
+- `POST /api/predict` 더미 응답 구현
+- 요청/응답 DTO 역할의 Pydantic schema 작성
+- 예측 로직을 `services/sentiment_service.py`로 분리
+
+검증:
+
+```text
+GET /health -> {"status": "ok"}
+POST /api/predict -> positive 더미 예측 응답 확인
+```
+
 ### Next Actions
 
-1. 개발 환경 확인
+1. 백엔드 서버를 실제로 띄워 `/docs` 확인
 2. 데이터셋 후보 결정
-3. 백엔드 기본 FastAPI 앱 생성
-4. 모델 학습 스크립트 작성
+3. 모델 학습 스크립트 작성
+4. 저장된 모델을 API에 연결
 5. 프론트엔드 Vite 앱 생성
 

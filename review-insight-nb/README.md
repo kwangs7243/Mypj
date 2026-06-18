@@ -40,6 +40,20 @@ git clone https://github.com/kwangs7243/Mypj.git
 - ML: Multinomial Naive Bayes, CountVectorizer or TfidfVectorizer
 - Documentation: Markdown
 
+## Backend Quick Start
+
+```bash
+cd review-insight-nb/backend
+uv sync
+uv run uvicorn app.main:app --reload
+```
+
+FastAPI 문서:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
 ## Directory Structure
 
 ```text
@@ -51,7 +65,8 @@ review-insight-nb/
 │  ├─ ml/
 │  ├─ models/
 │  ├─ data/
-│  ├─ requirements.txt
+│  ├─ pyproject.toml
+│  ├─ uv.lock
 │  └─ README.md
 ├─ frontend/
 │  ├─ src/
@@ -70,4 +85,3 @@ review-insight-nb/
 ## First Completion Target
 
 로컬 환경에서 백엔드와 프론트엔드를 실행한 뒤, 웹 화면에 리뷰를 입력하면 긍정/부정 예측 결과가 출력되는 상태를 1차 완성으로 봅니다.
-
