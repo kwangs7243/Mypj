@@ -48,7 +48,7 @@ Response:
 
 ### Model Info
 
-This endpoint is a placeholder until the real Naive Bayes model is trained and connected.
+This endpoint reports whether the saved Naive Bayes model artifacts are available.
 
 ```http
 GET /api/model-info
@@ -60,14 +60,14 @@ Response:
 {
   "model": "Multinomial Naive Bayes",
   "vectorizer": "TfidfVectorizer",
-  "status": "not_trained",
-  "trained": false
+  "status": "trained",
+  "trained": true
 }
 ```
 
 ### Predict Sentiment
 
-This endpoint currently uses temporary keyword-based dummy logic. It will later use the trained Naive Bayes model.
+This endpoint uses the saved `TfidfVectorizer` and `MultinomialNB` model artifacts.
 
 ```http
 POST /api/predict
@@ -109,8 +109,8 @@ app/
 
 - `main.py`: FastAPI app object and API route definitions.
 - `schemas.py`: Pydantic request and response DTOs.
-- `model_loader.py`: Model status and future model-loading logic.
-- `services/sentiment_service.py`: Sentiment prediction logic.
+- `model_loader.py`: Saved model/vectorizer loading and model status.
+- `services/sentiment_service.py`: Real sentiment prediction with the loaded model.
 
 ## Data Preprocessing
 

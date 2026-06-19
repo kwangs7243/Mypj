@@ -1,26 +1,35 @@
-from app.schemas import PredictRequest, PredictResponse
+from fastapi import HTTPException
 
-POSITIVE_HINTS = [
-    "\uc88b",  # 좋
-    "\ub9cc\uc871",  # 만족
-    "\ucd94\ucc9c",  # 추천
-    "\ube60\ub974",  # 빠르
-    "\ucd5c\uace0",  # 최고
-]
+from app.model_loader import load_model_bundle
+from app.schemas import PredictRequest, PredictResponse
+from ml.preprocess import clean_text
 
 
 def predict_sentiment(request: PredictRequest) -> PredictResponse:
-    text = request.text.strip()
+    bundle = load_model_bundle()
+    text = clean_text(request.text)
 
-    if any(word in text for word in POSITIVE_HINTS):
-        return PredictResponse(
-            label="positive",
-            confidence=0.75,
-            probabilities={"positive": 0.75, "negative": 0.25},
+    if not text:
+        raise HTTPException(
+            status_code=400,
+            detail="Review text must contain Korean characters.",
         )
 
+    vectorized_text = bundle.vectorizer.transform([text])
+
+    predicted_label = bundle.model.predict(vectorized_text)[0]
+    predicted_probabilities = bundle.model.predict_proba(vectorized_text)[0]
+    probabilities = {
+        label: float(probability)
+        for label, probability in zip(
+            bundle.model.classes_,
+            predicted_probabilities,
+            strict=True,
+        )
+    }
+
     return PredictResponse(
-        label="negative",
-        confidence=0.62,
-        probabilities={"positive": 0.38, "negative": 0.62},
+        label=str(predicted_label),
+        confidence=max(probabilities.values()),
+        probabilities=probabilities,
     )

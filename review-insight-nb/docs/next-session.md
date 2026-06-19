@@ -35,6 +35,7 @@ Completed:
 - saved preprocessed dataset for future model training and comparison
 - independent model training script
 - saved `MultinomialNB` model and `TfidfVectorizer` artifacts
+- saved model artifacts connected to FastAPI prediction service
 
 Validated endpoints:
 
@@ -84,13 +85,13 @@ Pydantic DTOs for request and response validation.
 backend/app/services/sentiment_service.py
 ```
 
-Current dummy sentiment prediction logic. Later this will call the trained model.
+Current real sentiment prediction logic. It loads the saved model/vectorizer through `model_loader.py`.
 
 ```text
 backend/app/model_loader.py
 ```
 
-Current model status placeholder. Later this will load `.joblib` model files.
+Loads saved `.joblib` model files and reports model status.
 
 ## Important Understanding So Far
 
@@ -109,6 +110,30 @@ It provides:
 
 `description` is mainly for generated API documentation.
 
+## Review Rule
+
+Always include a code review after implementation work in this project.
+
+The review should help the owner compare their own reading with Codex's reading. Keep it focused on:
+
+- code flow
+- responsibility boundaries
+- risks or fragile parts
+- learning points
+- small improvement candidates
+
+## 리뷰 규칙
+
+이 프로젝트에서는 구현 작업 후 항상 코드 리뷰를 함께 진행한다.
+
+리뷰는 프로젝트 소유자가 직접 읽은 내용과 Codex의 해석을 대조할 수 있게 돕는 목적이다. 다음 항목을 중심으로 짧고 명확하게 정리한다.
+
+- 코드 흐름
+- 책임 분리
+- 위험하거나 약한 부분
+- 학습 포인트
+- 작은 개선 후보
+
 ## Current API Flow
 
 ```text
@@ -116,23 +141,24 @@ POST /api/predict
 -> main.py route
 -> PredictRequest schema validation
 -> sentiment_service.predict_sentiment()
+-> model_loader.load_model_bundle()
+-> vectorizer.transform()
+-> model.predict() and model.predict_proba()
 -> PredictResponse
 -> JSON response
 ```
 
 ## Next Step
 
-Do not connect the model to the API immediately.
-
-The preprocessing and model training scripts are now complete. Next, connect the saved model artifacts to the API.
+The preprocessing, model training, and API model connection are now complete. Next, start the frontend MVP.
 
 Planned small step:
 
-1. Update `backend/app/model_loader.py` to load `.joblib` files.
-2. Replace dummy logic in `backend/app/services/sentiment_service.py`.
-3. Return real predicted label, confidence, and probabilities.
-4. Keep the API response shape stable.
-5. Verify `POST /api/predict` through FastAPI.
+1. Create the Vite React frontend.
+2. Build a simple review input form.
+3. Call `POST /api/predict`.
+4. Display label, confidence, and probabilities.
+5. Keep model selection out of the first frontend MVP.
 
 Expected output files:
 
@@ -171,6 +197,19 @@ Accuracy: 0.4000
 ```
 
 The score is low because the current sample dataset is intentionally tiny. Treat it as a pipeline check, not as a final model quality signal.
+
+Latest API model connection check:
+
+```text
+GET /api/model-info -> trained true
+POST /api/predict -> real model prediction response
+```
+
+Prediction input rule:
+
+- The backend cleans input with the same Korean-only rule used by preprocessing.
+- If cleaned user input contains no Korean characters, `POST /api/predict` returns 400.
+- Later, add frontend validation so invalid requests are blocked before submission.
 
 Current preprocessing rule:
 

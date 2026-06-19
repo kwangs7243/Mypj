@@ -185,3 +185,71 @@ Accuracy: 0.4000
 2. 더미 감성 예측 로직을 실제 모델 예측으로 교체
 3. `POST /api/predict`가 실제 모델 결과를 반환하는지 검증
 
+### API Model Connection Progress
+
+Connected the saved model artifacts to the FastAPI service.
+
+Completed:
+
+- Updated `backend/app/model_loader.py` to load `sentiment_model.joblib` and `vectorizer.joblib`.
+- Added cached model loading so the artifacts are not loaded repeatedly for every request.
+- Updated `GET /api/model-info` to report `trained` when both artifact files exist.
+- Replaced dummy keyword-based prediction logic in `backend/app/services/sentiment_service.py`.
+- Prediction now uses the same Korean-only cleaning rule, vectorizer transform, model prediction, and model probabilities.
+
+Validation:
+
+```text
+GET /api/model-info -> {'status': 'trained', 'trained': True}
+POST /api/predict -> real model prediction response
+```
+
+Example:
+
+```text
+Input: 배송이 빠르고 제품이 좋아요
+Prediction: positive
+Confidence: 0.6744
+```
+
+### API 모델 연결 진행 내용
+
+저장된 모델 파일을 FastAPI 서비스에 연결했다.
+
+완료:
+
+- `backend/app/model_loader.py`에서 `sentiment_model.joblib`, `vectorizer.joblib` 로드
+- 요청마다 모델 파일을 반복 로드하지 않도록 캐시 적용
+- `GET /api/model-info`가 모델 파일 존재 여부에 따라 `trained` 상태를 반환하도록 수정
+- `backend/app/services/sentiment_service.py`의 더미 키워드 기반 예측 로직 제거
+- 예측은 이제 한글 전용 정제, 벡터라이저 변환, 모델 예측, 모델 확률을 사용한다.
+
+검증:
+
+```text
+GET /api/model-info -> {'status': 'trained', 'trained': True}
+POST /api/predict -> 실제 모델 예측 응답
+```
+
+예시:
+
+```text
+입력: 배송이 빠르고 제품이 좋아요
+예측: positive
+confidence: 0.6744
+```
+
+### Next Actions
+
+1. Create the Vite React frontend.
+2. Build a simple review input form.
+3. Call `POST /api/predict`.
+4. Display label, confidence, and probabilities.
+
+### 다음 작업
+
+1. Vite React 프론트엔드 생성
+2. 간단한 리뷰 입력 form 구현
+3. `POST /api/predict` 호출
+4. label, confidence, probabilities 화면 출력
+

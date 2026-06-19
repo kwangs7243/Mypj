@@ -162,6 +162,38 @@ Future direction:
 - 후보 형태소 분석기로는 Okt, Mecab, Komoran, Kiwi 등이 있다.
 - tokenizer 선택은 설치 난이도, Windows 호환성, 설명 난이도, 실제 모델 성능을 보고 나중에 결정한다.
 
+### Reject Non-Korean Prediction Input After Cleaning
+
+Reason:
+
+- The preprocessing function may return an empty string when the input contains no Korean characters.
+- Empty cleaned text is valid as an intermediate dataset preprocessing result because those rows can be dropped.
+- Empty cleaned text is not valid user input for the prediction API because the service cannot provide a meaningful Korean review sentiment result.
+- The backend should enforce this contract even if the frontend later blocks invalid input earlier.
+
+Rule:
+
+- Keep `clean_text()` reusable and side-effect free.
+- Do not raise prediction-specific errors inside `clean_text()`.
+- In the sentiment service, return a 400 error when cleaned user input is empty.
+- Later, add frontend validation so requests with no Korean characters are blocked before reaching the backend.
+
+### 정제 후 한글이 없는 예측 입력 거부
+
+이유:
+
+- 입력에 한글이 없으면 전처리 함수가 빈 문자열을 반환할 수 있다.
+- 데이터셋 전처리 중간 결과로 빈 문자열이 나오는 것은 자연스럽고, 해당 행은 이후 제거하면 된다.
+- 하지만 사용자의 예측 요청에서 정제 결과가 빈 문자열이면 한국어 리뷰 감성 분석 서비스가 의미 있는 결과를 제공할 수 없다.
+- 이후 프론트엔드에서 먼저 막더라도 백엔드는 이 입력 계약을 직접 지켜야 한다.
+
+규칙:
+
+- `clean_text()`는 재사용 가능하고 부작용 없는 함수로 유지한다.
+- 예측 API 전용 예외를 `clean_text()` 내부에서 발생시키지 않는다.
+- 감성 예측 서비스에서 정제된 사용자 입력이 비어 있으면 400 에러를 반환한다.
+- 이후 프론트엔드 검증을 추가해 한글이 없는 요청은 백엔드에 도달하기 전에 막는다.
+
 ### 향후 모델 비교를 위해 계층 독립성 유지
 
 이유:

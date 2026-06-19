@@ -8,6 +8,7 @@ This repository is a portfolio-oriented review sentiment analysis web service us
 
 - Keep the project understandable for the owner.
 - Prefer small, explainable steps over large opaque rewrites.
+- After each implementation step, include a code review so the owner can compare Codex's review with their own reading.
 - Record important decisions in `docs/decision-record.md`.
 - Record session progress and next actions in `docs/ai-collaboration-log.md`.
 - Make every major implementation choice explainable in interviews.
@@ -26,6 +27,7 @@ This repository is a portfolio-oriented review sentiment analysis web service us
 - Keep code structure simple and portfolio-friendly.
 - Avoid unnecessary abstraction until duplication or complexity justifies it.
 - Add comments only when they clarify non-obvious logic.
+- Treat review as part of the development loop: after implementation, explain code flow, risks, learning points, and small improvement candidates before moving to the next feature.
 - Prefer relative paths inside project code.
 - Do not hard-code absolute local machine paths.
 - Keep generated model files under `backend/models/`.
