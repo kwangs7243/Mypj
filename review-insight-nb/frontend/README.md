@@ -1,27 +1,44 @@
 # Frontend
 
-React 기반 리뷰 분석 화면을 구현합니다.
+Simple browser UI for the first MVP.
 
-## Planned UI
+This first frontend does not use React yet because Node.js and npm are not available in the current local environment. It uses static HTML, CSS, and JavaScript so the owner can focus on the browser-to-API flow before learning frontend tooling.
 
-- 리뷰 입력 textarea
-- 분석하기 버튼
-- 긍정/부정 결과 표시
-- 예측 확률 표시
-- 모델 정보 표시
+## Run
 
-## Planned Structure
+1. Start the backend:
 
-```text
-src/
-├─ api/
-│  └─ sentimentApi.ts
-├─ components/
-│  ├─ ReviewForm.tsx
-│  └─ PredictionResult.tsx
-├─ pages/
-│  └─ HomePage.tsx
-├─ App.tsx
-└─ main.tsx
+```bash
+cd review-insight-nb/backend
+uv run uvicorn app.main:app --reload
 ```
 
+2. Open this file in a browser:
+
+```text
+frontend/index.html
+```
+
+## Current UI
+
+- Review input textarea
+- Analyze button
+- Model status display
+- Prediction label
+- Confidence
+- Positive and negative probabilities
+- Basic error message area
+
+## Current API Flow
+
+```text
+Browser form submit
+-> fetch("http://127.0.0.1:8000/api/predict")
+-> FastAPI model prediction
+-> JSON response
+-> result rendered in the page
+```
+
+## Later Direction
+
+After the first browser-to-API MVP works, this frontend can be replaced with React + Vite when Node.js is available.

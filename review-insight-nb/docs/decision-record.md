@@ -194,6 +194,38 @@ Rule:
 - 감성 예측 서비스에서 정제된 사용자 입력이 비어 있으면 400 에러를 반환한다.
 - 이후 프론트엔드 검증을 추가해 한글이 없는 요청은 백엔드에 도달하기 전에 막는다.
 
+### Start Frontend MVP With Static HTML
+
+Reason:
+
+- Node.js and npm are not available in the current local environment.
+- The owner is backend-focused and wants to understand the browser-to-API flow before learning frontend tooling.
+- A static HTML/CSS/JavaScript UI is enough for the first MVP goal: input a review, call the FastAPI prediction endpoint, and display the result.
+- React + Vite can be added later after the backend-to-browser flow is understood and Node.js is available.
+
+Rule:
+
+- Keep the first frontend intentionally small.
+- Use plain `fetch()` to call `http://127.0.0.1:8000/api/predict`.
+- Avoid frontend routing, state libraries, build tooling, and component splitting in the first browser UI.
+- Add CORS in FastAPI so the static browser UI can call the local backend.
+
+### 정적 HTML로 프론트엔드 MVP 시작
+
+이유:
+
+- 현재 로컬 환경에서 Node.js와 npm을 사용할 수 없다.
+- 프로젝트 소유자는 백엔드 중심으로 공부해왔고, 프론트엔드 도구보다 브라우저와 API가 연결되는 흐름을 먼저 이해하는 것이 중요하다.
+- 첫 MVP 목표는 리뷰 입력, FastAPI 예측 API 호출, 결과 출력이므로 정적 HTML/CSS/JavaScript로 충분하다.
+- React + Vite는 백엔드와 브라우저 연결 흐름을 이해하고 Node.js 환경이 준비된 뒤 추가할 수 있다.
+
+규칙:
+
+- 첫 프론트엔드는 의도적으로 작게 유지한다.
+- 기본 `fetch()`로 `http://127.0.0.1:8000/api/predict`를 호출한다.
+- 첫 브라우저 UI에서는 라우팅, 상태관리 라이브러리, 빌드 도구, 컴포넌트 분리를 피한다.
+- 정적 브라우저 UI가 로컬 백엔드를 호출할 수 있도록 FastAPI에 CORS를 추가한다.
+
 ### 향후 모델 비교를 위해 계층 독립성 유지
 
 이유:

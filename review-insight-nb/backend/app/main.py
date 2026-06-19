@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.model_loader import get_model_info
 from app.schemas import (
@@ -13,6 +14,13 @@ app = FastAPI(
     title="Review Insight NB API",
     description="Review sentiment analysis API with a Naive Bayes model",
     version="0.1.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

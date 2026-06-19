@@ -36,6 +36,8 @@ Completed:
 - independent model training script
 - saved `MultinomialNB` model and `TfidfVectorizer` artifacts
 - saved model artifacts connected to FastAPI prediction service
+- static HTML/CSS/JavaScript frontend MVP
+- FastAPI CORS middleware for browser-to-API calls
 
 Validated endpoints:
 
@@ -150,15 +152,15 @@ POST /api/predict
 
 ## Next Step
 
-The preprocessing, model training, and API model connection are now complete. Next, start the frontend MVP.
+The preprocessing, model training, API model connection, and first static frontend MVP are now complete. Next, run the backend and manually test the browser UI.
 
 Planned small step:
 
-1. Create the Vite React frontend.
-2. Build a simple review input form.
-3. Call `POST /api/predict`.
-4. Display label, confidence, and probabilities.
-5. Keep model selection out of the first frontend MVP.
+1. Start the backend with `uv run uvicorn app.main:app --reload`.
+2. Open `frontend/index.html` in a browser.
+3. Submit a Korean review.
+4. Confirm label, confidence, and probabilities render in the page.
+5. Try invalid input such as `abc123!!!` and confirm the error message appears.
 
 Expected output files:
 
@@ -210,6 +212,13 @@ Prediction input rule:
 - The backend cleans input with the same Korean-only rule used by preprocessing.
 - If cleaned user input contains no Korean characters, `POST /api/predict` returns 400.
 - Later, add frontend validation so invalid requests are blocked before submission.
+
+Frontend note:
+
+- Current frontend is static HTML/CSS/JavaScript, not React.
+- This is intentional because Node.js and npm are not available in the current environment.
+- The first goal is understanding the browser-to-FastAPI flow.
+- React + Vite can replace this later.
 
 Current preprocessing rule:
 

@@ -54,6 +54,16 @@ FastAPI 문서:
 http://127.0.0.1:8000/docs
 ```
 
+## Frontend Quick Start
+
+The first frontend MVP uses static HTML/CSS/JavaScript.
+
+Start the backend first, then open:
+
+```text
+review-insight-nb/frontend/index.html
+```
+
 ## Directory Structure
 
 ```text

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Insight NB</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="workspace" aria-labelledby="page-title">
+        <div class="header">
+          <div>
+            <p class="eyebrow">Naive Bayes Sentiment API</p>
+            <h1 id="page-title">Review Insight NB</h1>
+          </div>
+          <p id="model-status" class="status">Model status: checking...</p>
+        </div>
+
+        <form id="review-form" class="review-form">
+          <label for="review-text">Review text</label>
+          <textarea
+            id="review-text"
+            name="review-text"
+            rows="7"
+            placeholder="예: 배송이 빠르고 제품이 좋아요"
+          ></textarea>
+          <div class="actions">
+            <button id="analyze-button" type="submit">Analyze</button>
+            <p id="form-message" class="message" role="status"></p>
+          </div>
+        </form>
+
+        <section id="result-panel" class="result-panel" hidden>
+          <h2>Prediction Result</h2>
+          <dl class="result-grid">
+            <div>
+              <dt>Label</dt>
+              <dd id="result-label">-</dd>
+            </div>
+            <div>
+              <dt>Confidence</dt>
+              <dd id="result-confidence">-</dd>
+            </div>
+            <div>
+              <dt>Negative</dt>
+              <dd id="result-negative">-</dd>
+            </div>
+            <div>
+              <dt>Positive</dt>
+              <dd id="result-positive">-</dd>
+            </div>
+          </dl>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

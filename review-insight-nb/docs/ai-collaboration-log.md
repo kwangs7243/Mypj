@@ -253,3 +253,73 @@ confidence: 0.6744
 3. `POST /api/predict` 호출
 4. label, confidence, probabilities 화면 출력
 
+### Frontend MVP Progress
+
+Started the first frontend MVP with static HTML/CSS/JavaScript instead of React.
+
+Reason:
+
+- Node.js and npm are not available in the current environment.
+- The owner is backend-focused, so the first frontend goal is understanding the browser-to-API flow.
+
+Completed:
+
+- Created `frontend/index.html`.
+- Created `frontend/styles.css`.
+- Created `frontend/app.js`.
+- Added a review textarea, analyze button, model status display, result area, and error message area.
+- Added `fetch()` calls to `GET /api/model-info` and `POST /api/predict`.
+- Added FastAPI CORS middleware so the static frontend can call the local backend.
+
+Validation:
+
+```text
+GET /api/model-info -> trained true
+POST /api/predict -> real prediction response
+CORS preflight /api/predict -> 200, allow-origin *
+```
+
+Browser automation was not available in the current tool context, so visual/manual browser testing still remains.
+
+### 프론트엔드 MVP 진행 내용
+
+React 대신 정적 HTML/CSS/JavaScript로 첫 프론트엔드 MVP를 시작했다.
+
+이유:
+
+- 현재 환경에서 Node.js와 npm을 사용할 수 없다.
+- 프로젝트 소유자는 백엔드 중심으로 공부해왔으므로, 첫 프론트 목표는 브라우저와 API의 연결 흐름을 이해하는 것이다.
+
+완료:
+
+- `frontend/index.html` 생성
+- `frontend/styles.css` 생성
+- `frontend/app.js` 생성
+- 리뷰 입력 textarea, 분석 버튼, 모델 상태 표시, 결과 영역, 에러 메시지 영역 추가
+- `GET /api/model-info`, `POST /api/predict`를 호출하는 `fetch()` 코드 추가
+- 정적 프론트엔드가 로컬 백엔드를 호출할 수 있도록 FastAPI CORS middleware 추가
+
+검증:
+
+```text
+GET /api/model-info -> trained true
+POST /api/predict -> 실제 예측 응답
+CORS preflight /api/predict -> 200, allow-origin *
+```
+
+현재 도구 환경에서는 브라우저 자동화가 노출되지 않아 화면 기반 수동 테스트는 아직 남아 있다.
+
+### Next Actions
+
+1. Start the backend server.
+2. Open `frontend/index.html` in a browser.
+3. Manually test valid and invalid inputs.
+4. Review the frontend code flow.
+
+### 다음 작업
+
+1. 백엔드 서버 실행
+2. 브라우저에서 `frontend/index.html` 열기
+3. 정상 입력과 잘못된 입력 수동 테스트
+4. 프론트엔드 코드 흐름 리뷰
+
