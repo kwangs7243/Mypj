@@ -28,11 +28,13 @@ frontend/index.html
 - Confidence
 - Positive and negative probabilities
 - Basic error message area
+- Frontend validation for empty input and input with no Korean characters
 
 ## Current API Flow
 
 ```text
 Browser form submit
+-> frontend validation
 -> fetch("http://127.0.0.1:8000/api/predict")
 -> FastAPI model prediction
 -> JSON response

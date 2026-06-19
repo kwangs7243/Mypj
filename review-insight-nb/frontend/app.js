@@ -15,6 +15,14 @@ function formatPercent(value) {
   return `${(value * 100).toFixed(1)}%`;
 }
 
+function formatLabel(label) {
+  return label === "positive" ? "긍정" : "부정";
+}
+
+function containsKorean(text) {
+  return /[가-힣]/.test(text);
+}
+
 function setMessage(message) {
   formMessage.textContent = message;
 }
@@ -25,7 +33,7 @@ function setLoading(isLoading) {
 }
 
 function renderPrediction(prediction) {
-  resultLabel.textContent = prediction.label;
+  resultLabel.textContent = formatLabel(prediction.label);
   resultConfidence.textContent = formatPercent(prediction.confidence);
   resultNegative.textContent = formatPercent(prediction.probabilities.negative);
   resultPositive.textContent = formatPercent(prediction.probabilities.positive);
@@ -68,6 +76,12 @@ form.addEventListener("submit", async (event) => {
 
   if (!text) {
     setMessage("리뷰를 입력해 주세요.");
+    resultPanel.hidden = true;
+    return;
+  }
+
+  if (!containsKorean(text)) {
+    setMessage("한글 리뷰를 입력해 주세요.");
     resultPanel.hidden = true;
     return;
   }

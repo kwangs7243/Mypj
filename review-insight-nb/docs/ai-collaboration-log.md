@@ -269,6 +269,8 @@ Completed:
 - Created `frontend/app.js`.
 - Added a review textarea, analyze button, model status display, result area, and error message area.
 - Added `fetch()` calls to `GET /api/model-info` and `POST /api/predict`.
+- Added frontend validation for empty input and input with no Korean characters.
+- Displayed prediction labels as Korean UI text: `긍정` or `부정`.
 - Added FastAPI CORS middleware so the static frontend can call the local backend.
 
 Validation:
@@ -297,6 +299,8 @@ React 대신 정적 HTML/CSS/JavaScript로 첫 프론트엔드 MVP를 시작했�
 - `frontend/app.js` 생성
 - 리뷰 입력 textarea, 분석 버튼, 모델 상태 표시, 결과 영역, 에러 메시지 영역 추가
 - `GET /api/model-info`, `POST /api/predict`를 호출하는 `fetch()` 코드 추가
+- 빈 입력과 한글이 없는 입력을 프론트엔드에서 먼저 막는 검증 추가
+- 예측 라벨을 화면에서 `긍정`, `부정`으로 표시
 - 정적 프론트엔드가 로컬 백엔드를 호출할 수 있도록 FastAPI CORS middleware 추가
 
 검증:

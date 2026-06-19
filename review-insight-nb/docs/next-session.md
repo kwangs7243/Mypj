@@ -218,6 +218,7 @@ Frontend note:
 - Current frontend is static HTML/CSS/JavaScript, not React.
 - This is intentional because Node.js and npm are not available in the current environment.
 - The first goal is understanding the browser-to-FastAPI flow.
+- The frontend blocks empty input and text with no Korean characters before calling the API.
 - React + Vite can replace this later.
 
 Current preprocessing rule:
