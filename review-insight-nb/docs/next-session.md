@@ -30,6 +30,11 @@ Completed:
 - service layer for dummy sentiment prediction
 - model info endpoint placeholder
 - Swagger/OpenAPI docs available from FastAPI
+- sample review dataset
+- independent preprocessing script
+- saved preprocessed dataset for future model training and comparison
+- independent model training script
+- saved `MultinomialNB` model and `TfidfVectorizer` artifacts
 
 Validated endpoints:
 
@@ -119,18 +124,15 @@ POST /api/predict
 
 Do not connect the model to the API immediately.
 
-First build the ML layer as an independent script.
+The preprocessing and model training scripts are now complete. Next, connect the saved model artifacts to the API.
 
 Planned small step:
 
-1. Create `backend/data/sample_reviews.csv`
-2. Create `backend/ml/train_model.py`
-3. Load CSV with pandas
-4. Split train/test data
-5. Vectorize text with `TfidfVectorizer`
-6. Train `MultinomialNB`
-7. Print accuracy and classification report
-8. Save these files with `joblib`
+1. Update `backend/app/model_loader.py` to load `.joblib` files.
+2. Replace dummy logic in `backend/app/services/sentiment_service.py`.
+3. Return real predicted label, confidence, and probabilities.
+4. Keep the API response shape stable.
+5. Verify `POST /api/predict` through FastAPI.
 
 Expected output files:
 
@@ -138,6 +140,44 @@ Expected output files:
 backend/models/sentiment_model.joblib
 backend/models/vectorizer.joblib
 ```
+
+Current data files:
+
+```text
+backend/data/sample_reviews.csv
+backend/data/preprocessed_reviews.csv
+```
+
+Preprocessing command:
+
+```bash
+cd review-insight-nb/backend
+uv run python ml/preprocess.py
+```
+
+Training command:
+
+```bash
+cd review-insight-nb/backend
+uv run python ml/train_model.py
+```
+
+Latest training check:
+
+```text
+Train rows: 15
+Test rows: 5
+Accuracy: 0.4000
+```
+
+The score is low because the current sample dataset is intentionally tiny. Treat it as a pipeline check, not as a final model quality signal.
+
+Current preprocessing rule:
+
+- Keep only Korean characters and whitespace.
+- Remove English letters, numbers, punctuation, emojis, and other symbols.
+- Do not add a Korean morphological analyzer yet.
+- Add tokenizer comparison later only if simple Korean-only preprocessing becomes a real limitation.
 
 Run command:
 
@@ -159,6 +199,52 @@ The training script should work without:
 After the training script works, update `model_loader.py` to load the saved `.joblib` files.
 
 Then replace the dummy logic in `sentiment_service.py` with real model prediction.
+
+## Layer Independence Direction
+
+Keep each layer replaceable.
+
+- ML layer: training, vectorizing, loading, predicting, and evaluating
+- API layer: HTTP routes, schemas, response contracts, and service orchestration
+- Frontend layer: user input, UI state, and API communication
+
+The first version should use one default model, `MultinomialNB`. Do not design the frontend or API around model internals. Later, the project may add model comparison, dataset changes, vectorizer comparison, or model selection through an API parameter and a frontend select box.
+
+The important rule is that a model should work regardless of whether the caller is a web API, frontend, CLI script, or another service. The frontend should also continue to work as long as the backend response contract stays stable, even if the underlying ML model changes.
+
+## 계층 독립성 방향
+
+각 계층은 교체 가능한 구조로 유지한다.
+
+- ML 계층: 학습, 벡터화, 로딩, 예측, 평가
+- API 계층: HTTP 라우트, schema, 응답 계약, 서비스 호출 흐름
+- 프론트엔드 계층: 사용자 입력, 화면 상태, API 통신
+
+첫 버전은 기본 모델 하나인 `MultinomialNB`만 사용한다. 프론트엔드나 API를 모델 내부 구현에 맞춰 설계하지 않는다. 이후에는 모델 비교, 데이터셋 변경, 벡터라이저 비교, API 파라미터와 프론트엔드 select box를 통한 모델 선택 기능을 추가할 수 있다.
+
+중요한 규칙은 모델이 웹 API, 프론트엔드, CLI 스크립트, 다른 서비스 중 무엇에서 호출되든 독립적으로 동작해야 한다는 것이다. 프론트엔드도 백엔드 응답 계약만 유지된다면 내부 ML 모델이 바뀌어도 계속 동작해야 한다.
+
+## Documentation Language Rule
+
+Use reader-based documentation language.
+
+- Codex handoff documents should be English-first.
+- Owner-facing explanation documents should be Korean-first.
+- Shared decisions and major progress summaries should include both English and Korean.
+- When equivalent English Codex-facing documentation exists, Codex should use it as the primary source and read Korean owner-facing documents only when Korean wording, portfolio explanations, or missing details are needed.
+
+This rule exists because Korean Markdown can be misread when terminal encoding differs between PCs. English handoff notes make continuation safer for Codex, while Korean owner-facing notes keep the project explainable for portfolio and interview use.
+
+## 문서 언어 규칙
+
+문서는 읽는 사람 기준으로 언어를 나눈다.
+
+- Codex가 이어서 읽어야 하는 인수인계 문서는 영어 중심으로 작성한다.
+- 프로젝트 소유자가 읽는 설명 문서는 한글 중심으로 작성한다.
+- 중요한 결정과 주요 진행 요약은 영어와 한글을 함께 작성한다.
+- 같은 내용의 Codex용 영어 문서가 있다면 Codex는 그 문서를 우선 기준으로 삼고, 한글 사용자용 문서는 한글 문구, 포트폴리오 설명, 또는 영어 문서에 없는 세부 내용이 필요할 때만 읽는다.
+
+이 규칙은 PC나 터미널 인코딩 차이로 한글 Markdown이 깨져 보일 수 있기 때문에 추가했다. Codex용 인수인계는 영어로 안정성을 높이고, 사용자용 설명 문서는 한글로 남겨 포트폴리오와 면접 설명에 활용한다.
 
 ## Serialization Decision
 

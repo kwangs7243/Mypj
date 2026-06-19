@@ -112,3 +112,46 @@ app/
 - `model_loader.py`: Model status and future model-loading logic.
 - `services/sentiment_service.py`: Sentiment prediction logic.
 
+## Data Preprocessing
+
+Run from the backend root:
+
+```bash
+uv run python ml/preprocess.py
+```
+
+Input:
+
+```text
+data/sample_reviews.csv
+```
+
+Output:
+
+```text
+data/preprocessed_reviews.csv
+```
+
+## Model Training
+
+Run from the backend root:
+
+```bash
+uv run python ml/train_model.py
+```
+
+Input:
+
+```text
+data/preprocessed_reviews.csv
+```
+
+Output:
+
+```text
+models/sentiment_model.joblib
+models/vectorizer.joblib
+```
+
+The current sample dataset is intentionally small, so evaluation scores are only a pipeline check for now.
+

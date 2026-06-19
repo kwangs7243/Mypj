@@ -61,3 +61,127 @@ POST /api/predict -> positive 더미 예측 응답 확인
 4. 저장된 모델을 API에 연결
 5. 프론트엔드 Vite 앱 생성
 
+## 2026-06-19
+
+### Progress
+
+Implemented the first data preprocessing step before model training.
+
+Completed:
+
+- Created `backend/data/sample_reviews.csv`.
+- Added 20 Korean sample reviews: 10 positive and 10 negative.
+- Created `backend/ml/preprocess.py` as an independent script.
+- The preprocessing script loads raw review data, validates required columns, cleans text, normalizes labels, removes invalid or empty rows, removes duplicates, and saves reusable preprocessed data.
+- Generated `backend/data/preprocessed_reviews.csv`.
+
+Validation:
+
+```text
+Raw rows: 20
+Preprocessed rows: 20
+Label counts: {'positive': 10, 'negative': 10}
+```
+
+### 진행 내용
+
+모델 학습 전에 첫 데이터 전처리 단계를 구현했다.
+
+완료:
+
+- `backend/data/sample_reviews.csv` 생성
+- 긍정 10개, 부정 10개의 한국어 샘플 리뷰 추가
+- 독립 실행 가능한 `backend/ml/preprocess.py` 생성
+- 전처리 스크립트에서 원본 리뷰 로드, 필수 컬럼 검증, 텍스트 정리, 라벨 정규화, 빈 값/잘못된 값 제거, 중복 제거, 전처리 데이터 저장을 수행
+- `backend/data/preprocessed_reviews.csv` 생성
+
+검증:
+
+```text
+Raw rows: 20
+Preprocessed rows: 20
+Label counts: {'positive': 10, 'negative': 10}
+```
+
+### Next Actions
+
+1. Create `backend/ml/train_model.py`.
+2. Load `backend/data/preprocessed_reviews.csv`.
+3. Split train/test data.
+4. Train `TfidfVectorizer` + `MultinomialNB`.
+5. Save `backend/models/sentiment_model.joblib` and `backend/models/vectorizer.joblib`.
+
+### 다음 작업
+
+1. `backend/ml/train_model.py` 생성
+2. `backend/data/preprocessed_reviews.csv` 로드
+3. train/test 데이터 분리
+4. `TfidfVectorizer` + `MultinomialNB` 학습
+5. `backend/models/sentiment_model.joblib`, `backend/models/vectorizer.joblib` 저장
+
+### Model Training Progress
+
+Implemented the first independent model training script.
+
+Completed:
+
+- Created `backend/ml/train_model.py`.
+- Loaded `backend/data/preprocessed_reviews.csv`.
+- Split data into train/test sets with stratified labels.
+- Trained `TfidfVectorizer` + `MultinomialNB`.
+- Printed accuracy and classification report.
+- Saved `backend/models/sentiment_model.joblib`.
+- Saved `backend/models/vectorizer.joblib`.
+- Verified that the saved artifacts can be loaded and used for prediction.
+
+Latest training output:
+
+```text
+Train rows: 15
+Test rows: 5
+Accuracy: 0.4000
+```
+
+Note:
+
+The current dataset has only 20 sample rows, so the score is not a meaningful final model quality signal. It is mainly a pipeline validation result.
+
+### 모델 학습 진행 내용
+
+첫 독립 모델 학습 스크립트를 구현했다.
+
+완료:
+
+- `backend/ml/train_model.py` 생성
+- `backend/data/preprocessed_reviews.csv` 로드
+- 라벨 비율을 유지하면서 train/test 데이터 분리
+- `TfidfVectorizer` + `MultinomialNB` 학습
+- accuracy와 classification report 출력
+- `backend/models/sentiment_model.joblib` 저장
+- `backend/models/vectorizer.joblib` 저장
+- 저장된 모델과 벡터라이저를 다시 로드해 예측 가능 여부 확인
+
+최근 학습 출력:
+
+```text
+Train rows: 15
+Test rows: 5
+Accuracy: 0.4000
+```
+
+메모:
+
+현재 데이터셋은 샘플 20개뿐이므로 점수는 최종 모델 품질 지표로 보기 어렵다. 지금은 학습 파이프라인 검증 결과로 본다.
+
+### Next Actions
+
+1. Update `backend/app/model_loader.py` to load saved `.joblib` files.
+2. Replace dummy sentiment logic with real model prediction.
+3. Verify `POST /api/predict` returns real model output.
+
+### 다음 작업
+
+1. `backend/app/model_loader.py`에서 저장된 `.joblib` 파일 로드
+2. 더미 감성 예측 로직을 실제 모델 예측으로 교체
+3. `POST /api/predict`가 실제 모델 결과를 반환하는지 검증
+
