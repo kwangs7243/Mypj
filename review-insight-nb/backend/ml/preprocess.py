@@ -33,7 +33,7 @@ def load_raw_reviews(path: Path = RAW_DATA_PATH) -> pd.DataFrame:
 
 
 def preprocess_reviews(reviews: pd.DataFrame) -> pd.DataFrame:
-    processed = reviews.copy()
+    processed = reviews.dropna(subset=["text", "label"]).copy()
     processed["original_text"] = processed["text"].astype(str)
     processed["text"] = processed["text"].apply(clean_text)
     processed["label"] = processed["label"].astype(str).str.strip().str.lower()
@@ -67,7 +67,6 @@ def main() -> None:
     print(f"Preprocessed rows: {len(processed_reviews)}")
     print(f"Label counts: {label_counts}")
     print(f"Saved to: {PREPROCESSED_DATA_PATH}")
-
 
 if __name__ == "__main__":
     main()
