@@ -230,6 +230,13 @@ Expected first output:
 backend/data/generated/generated_reviews_5k.csv
 ```
 
+Run command:
+
+```bash
+cd review-insight-nb/backend
+uv run python ml/experiments/generate_review_dataset.py
+```
+
 Then run preprocessing to create:
 
 ```text

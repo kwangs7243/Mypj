@@ -160,12 +160,11 @@ The preprocessing, model training, API model connection, and first static fronte
 
 Planned small step:
 
-1. Review `docs/dataset-plan.md`.
-2. Create `backend/ml/experiments/generate_review_dataset.py`.
-3. Generate a controlled balanced 5k Korean review dataset.
-4. Save it to `backend/data/generated/generated_reviews_5k.csv`.
-5. Create a preprocessing path that outputs `backend/data/processed/korean_only_5k.csv`.
-6. Keep FastAPI/frontend MVP unchanged unless the API contract must change.
+1. Run `backend/ml/experiments/generate_review_dataset.py`.
+2. Confirm `backend/data/generated/generated_reviews_5k.csv` has 5,000 rows.
+3. Confirm label balance is 2,500 positive and 2,500 negative.
+4. Create a preprocessing path that outputs `backend/data/processed/korean_only_5k.csv`.
+5. Keep FastAPI/frontend MVP unchanged unless the API contract must change.
 
 Expected output files:
 
