@@ -34,11 +34,32 @@ Output:
 data/preprocessed_reviews.csv
 ```
 
-Current rule:
+Default rule:
 
 - Keep only Korean characters and whitespace.
 - Remove English letters, numbers, punctuation, emojis, and other symbols.
 - Add Korean tokenization later only if the first model needs it.
+
+The preprocessing script now supports explicit modes:
+
+```bash
+uv run python ml/preprocess.py --mode korean_only
+uv run python ml/preprocess.py --mode light
+```
+
+Mode meaning:
+
+- `korean_only`: keep only Korean characters and whitespace. This matches the current service baseline and is useful before simple Korean-only vectorization or a Korean morphological analyzer.
+- `light`: normalize spacing only and keep English, numbers, punctuation, and symbols. This is intended for later SentencePiece-style experiments where subword tokenization should see the original noisy text.
+
+Generated 5k dataset example:
+
+```bash
+uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/korean_only_5k.csv --mode korean_only
+uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/light_clean_5k.csv --mode light
+```
+
+Both output files are ignored by Git.
 
 ## Training
 

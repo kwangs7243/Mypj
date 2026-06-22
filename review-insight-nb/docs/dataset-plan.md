@@ -140,9 +140,28 @@ Different preprocessing outputs may be saved separately later:
 
 ```text
 processed/korean_only_5k.csv
+processed/light_clean_5k.csv
 processed/morph_tokenized_5k.csv
 processed/sentencepiece_5k.csv
 ```
+
+Current preprocessing modes:
+
+```text
+korean_only: keep only Korean characters and whitespace
+light: normalize spacing only, preserving English, numbers, punctuation, and symbols
+```
+
+When generated review data is preprocessed, `korean_only` can produce fewer rows than `light` because removing English, numbers, and symbols can make more rows collapse into duplicate `text,label` pairs.
+
+현재 전처리 모드:
+
+```text
+korean_only: 한글과 공백만 남긴다
+light: 공백만 정리하고 영어, 숫자, 문장부호, 기호를 보존한다
+```
+
+생성 리뷰 데이터를 전처리할 때 `korean_only` 결과 행 수가 `light`보다 줄어들 수 있다. 영어, 숫자, 기호를 제거하면서 서로 다른 원문이 같은 `text,label` 조합으로 합쳐지고, 중복 제거 단계에서 삭제될 수 있기 때문이다.
 
 ## Why Keep Noisy Raw Text?
 
@@ -241,6 +260,14 @@ Then run preprocessing to create:
 
 ```text
 backend/data/processed/korean_only_5k.csv
+```
+
+Command:
+
+```bash
+cd review-insight-nb/backend
+uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/korean_only_5k.csv --mode korean_only
+uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/light_clean_5k.csv --mode light
 ```
 
 These output CSV files are ignored by Git. After cloning on another PC, run the generation/preprocessing scripts again or copy the dataset from external storage.

@@ -90,6 +90,16 @@ This score is not meaningful as a final performance signal because the dataset i
 - Korean morphological analyzer tokenizer
 - SentencePiece tokenizer
 
+Preprocessing should be selected by tokenizer family:
+
+- `korean_only` for the current baseline and Korean morphological analyzer experiments.
+- `light` for SentencePiece experiments, so English, numbers, punctuation, and noisy symbols remain available to the tokenizer.
+
+토크나이저 종류에 따라 전처리 모드를 분리한다.
+
+- 현재 baseline과 한국어 형태소 분석기 실험에는 `korean_only`를 사용한다.
+- SentencePiece 실험에는 `light`를 사용해서 영어, 숫자, 문장부호, 노이즈 기호를 토크나이저가 볼 수 있게 둔다.
+
 ### 4. Dataset Improvement
 
 - replace the tiny sample dataset with a larger Korean review dataset
