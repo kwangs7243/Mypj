@@ -196,3 +196,60 @@ Do not rely on hidden notebook cell execution order for the main project pipelin
 experiment_id, dataset, preprocessing, tokenizer, vectorizer, model, accuracy, macro_f1, weighted_f1, memo
 baseline_001, sample_reviews, korean_only, default, tfidf, MultinomialNB, 0.4000, 0.2900, 0.2300, tiny sample dataset
 ```
+
+## First Comparison Scope
+
+The first model comparison script uses:
+
+```text
+dataset: korean_only_5k fixed train/test split
+tokenizer: scikit-learn default tokenization
+vectorizers: CountVectorizer, TfidfVectorizer
+models: MultinomialNB, ComplementNB, LogisticRegression, LinearSVC
+report: backend/ml/reports/model_comparison_5k.csv
+```
+
+This is a baseline for validating the comparison code. It is not the final Korean tokenization experiment.
+
+Later tokenizer-focused comparisons should replace `sklearn_default` with:
+
+```text
+morphological tokenizer
+SentencePiece tokenizer
+```
+
+The vectorizer/model comparison structure should remain reusable.
+
+## Synthetic Dataset Limitation
+
+The generated 5k dataset currently reaches 100% test accuracy across all baseline vectorizer/model combinations.
+
+This means the dataset is useful for checking whether the pipeline works, but it is not useful for measuring real model differences.
+
+Next comparison should use NSMC:
+
+```text
+source: https://github.com/e9t/nsmc
+train: ratings_train.txt
+test: ratings_test.txt
+schema conversion: document,label -> text,label
+```
+
+The model comparison script should be reused with NSMC train/test files after conversion.
+
+## Synthetic 데이터셋 한계
+
+현재 generated 5k 데이터셋은 모든 baseline vectorizer/model 조합에서 test accuracy 100%가 나온다.
+
+따라서 이 데이터셋은 파이프라인 검증용으로는 유용하지만, 실제 모델 차이를 측정하기에는 적합하지 않다.
+
+다음 비교는 NSMC로 진행한다.
+
+```text
+출처: https://github.com/e9t/nsmc
+train: ratings_train.txt
+test: ratings_test.txt
+스키마 변환: document,label -> text,label
+```
+
+NSMC 변환 후 기존 model comparison 구조를 재사용한다.

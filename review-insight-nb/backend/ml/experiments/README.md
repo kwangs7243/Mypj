@@ -51,3 +51,33 @@ data/splits/korean_only_5k_test.csv
 
 The split script uses stratified train/test splitting so each label keeps a similar ratio in both files.
 The output CSV files are ignored by Git. Regenerate them after cloning or copy them from external storage.
+
+## Compare Models
+
+Run from the backend root after creating split files:
+
+```bash
+uv run python ml/experiments/compare_models.py
+```
+
+Default inputs:
+
+```text
+data/splits/korean_only_5k_train.csv
+data/splits/korean_only_5k_test.csv
+```
+
+Default output:
+
+```text
+ml/reports/model_comparison_5k.csv
+```
+
+Example for another fixed split:
+
+```bash
+uv run python ml/experiments/compare_models.py --dataset-name light_clean_5k --train data/splits/light_clean_5k_train.csv --test data/splits/light_clean_5k_test.csv --output ml/reports/model_comparison_light_5k.csv
+```
+
+This first comparison intentionally uses scikit-learn's default tokenization as a baseline only.
+The target experiment direction is to replace the tokenizer later with Korean morphological tokenization and SentencePiece tokenization while keeping the same comparison structure.

@@ -235,6 +235,100 @@ Goal:
 - check memory behavior
 - find a practical dataset size for the project
 
+## NSMC Dataset Plan
+
+The generated 5k dataset is useful for validating the pipeline, but it is too easy for model comparison because template-based sentiment words make the test accuracy reach 100%.
+
+Use NSMC as the next realistic Korean sentiment dataset.
+
+Source:
+
+```text
+https://github.com/e9t/nsmc
+```
+
+NSMC provides Korean movie review sentiment data with this schema:
+
+```text
+id, document, label
+```
+
+Label meaning:
+
+```text
+0: negative
+1: positive
+```
+
+Files to use:
+
+```text
+ratings_train.txt: 150,000 rows
+ratings_test.txt: 50,000 rows
+```
+
+The files are tab-separated text files even though the extension is `.txt`.
+
+Recommended project workflow:
+
+```text
+1. Place NSMC source files under backend/data/raw/.
+2. Convert id/document/label to text,label.
+3. Save converted files under backend/data/processed/ or backend/data/splits/.
+4. Reuse compare_models.py with the converted train/test files.
+```
+
+Do not commit the NSMC raw or converted CSV files to Git. Keep only conversion scripts and instructions.
+
+Korpora can also load Korean corpora through a Python package, but the first implementation should prefer raw files plus an explicit converter script. This keeps the data flow visible and avoids adding a dependency before it is needed.
+
+## NSMC 데이터셋 계획
+
+현재 generated 5k 데이터셋은 파이프라인 검증에는 유용하지만, 템플릿 기반 감성 단서가 너무 명확해서 모델 비교용으로는 너무 쉽다. test accuracy가 100%까지 나오므로 실제 일반화 성능 분석에는 부족하다.
+
+다음 현실적인 한국어 감성분석 데이터셋으로 NSMC를 사용한다.
+
+출처:
+
+```text
+https://github.com/e9t/nsmc
+```
+
+NSMC는 한국어 영화 리뷰 감성 데이터이며 기본 구조는 다음과 같다.
+
+```text
+id, document, label
+```
+
+라벨 의미:
+
+```text
+0: negative
+1: positive
+```
+
+사용할 파일:
+
+```text
+ratings_train.txt: 150,000 rows
+ratings_test.txt: 50,000 rows
+```
+
+파일 확장자는 `.txt`지만 내부 형식은 tab으로 구분된 TSV에 가깝다.
+
+권장 프로젝트 흐름:
+
+```text
+1. NSMC 원본 파일을 backend/data/raw/ 아래에 둔다.
+2. id/document/label 구조를 text,label 구조로 변환한다.
+3. 변환 결과를 backend/data/processed/ 또는 backend/data/splits/ 아래에 저장한다.
+4. 변환된 train/test 파일을 compare_models.py에 넣어 재사용한다.
+```
+
+NSMC 원본 파일이나 변환 CSV는 Git에 커밋하지 않는다. 변환 스크립트와 실행 안내만 저장소에 남긴다.
+
+Korpora 라이브러리로 한국어 말뭉치를 가져오는 방식도 가능하지만, 첫 구현에서는 원본 파일과 명시적인 변환 스크립트를 우선 사용한다. 데이터 흐름을 눈으로 추적하기 쉽고, 필요한 시점 전까지 의존성을 늘리지 않을 수 있기 때문이다.
+
 ## Next Dataset Task
 
 Create a controlled generated dataset script:
