@@ -8,6 +8,12 @@ Planned files:
 - `train_model.py`
 - `evaluate.py`
 
+Planned experiment folders:
+
+- `experiments/`
+- `tokenizers/`
+- `reports/`
+
 ## Preprocessing
 
 Run from the backend root:
@@ -53,5 +59,22 @@ Output:
 ```text
 models/sentiment_model.joblib
 models/vectorizer.joblib
+```
+
+## Experiments
+
+The first web-service MVP uses one baseline model. Later model analysis work should live under:
+
+```text
+ml/experiments/
+ml/tokenizers/
+ml/reports/
+```
+
+See:
+
+```text
+docs/model-experiment-plan.md
+docs/dataset-plan.md
 ```
 

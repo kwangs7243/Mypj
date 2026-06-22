@@ -38,6 +38,10 @@ Completed:
 - saved model artifacts connected to FastAPI prediction service
 - static HTML/CSS/JavaScript frontend MVP
 - FastAPI CORS middleware for browser-to-API calls
+- model experiment plan document
+- model experiment folder skeleton
+- dataset plan document
+- data folder skeleton for raw/generated/processed/splits
 
 Validated endpoints:
 
@@ -156,11 +160,12 @@ The preprocessing, model training, API model connection, and first static fronte
 
 Planned small step:
 
-1. Start the backend with `uv run uvicorn app.main:app --reload`.
-2. Open `frontend/index.html` in a browser.
-3. Submit a Korean review.
-4. Confirm label, confidence, and probabilities render in the page.
-5. Try invalid input such as `abc123!!!` and confirm the error message appears.
+1. Review `docs/dataset-plan.md`.
+2. Create `backend/ml/experiments/generate_review_dataset.py`.
+3. Generate a controlled balanced 5k Korean review dataset.
+4. Save it to `backend/data/generated/generated_reviews_5k.csv`.
+5. Create a preprocessing path that outputs `backend/data/processed/korean_only_5k.csv`.
+6. Keep FastAPI/frontend MVP unchanged unless the API contract must change.
 
 Expected output files:
 
