@@ -270,6 +270,24 @@ uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv -
 uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/light_clean_5k.csv --mode light
 ```
 
+Then create fixed train/test splits:
+
+```bash
+uv run python ml/experiments/split_dataset.py --input data/processed/korean_only_5k.csv --train-output data/splits/korean_only_5k_train.csv --test-output data/splits/korean_only_5k_test.csv
+uv run python ml/experiments/split_dataset.py --input data/processed/light_clean_5k.csv --train-output data/splits/light_clean_5k_train.csv --test-output data/splits/light_clean_5k_test.csv
+```
+
+The split files are also ignored by Git.
+
+그 다음 고정된 train/test 분할 파일을 만든다.
+
+```bash
+uv run python ml/experiments/split_dataset.py --input data/processed/korean_only_5k.csv --train-output data/splits/korean_only_5k_train.csv --test-output data/splits/korean_only_5k_test.csv
+uv run python ml/experiments/split_dataset.py --input data/processed/light_clean_5k.csv --train-output data/splits/light_clean_5k_train.csv --test-output data/splits/light_clean_5k_test.csv
+```
+
+split CSV 파일도 Git에서 무시된다.
+
 These output CSV files are ignored by Git. After cloning on another PC, run the generation/preprocessing scripts again or copy the dataset from external storage.
 
 위 출력 CSV 파일들은 Git에서 무시된다. 다른 PC에서 clone한 뒤에는 생성/전처리 스크립트를 다시 실행하거나 외부 저장소에서 데이터셋을 복사한다.

@@ -59,6 +59,7 @@ This score is not meaningful as a final performance signal because the dataset i
 - Treat the current FastAPI/frontend MVP as a working demo, not as the model research layer.
 - Separate generated/synthetic data from real external datasets.
 - Do not treat synthetic dataset scores as proof of real-world generalization.
+- Use `.py` scripts for reproducible execution pipelines and `.ipynb` notebooks for exploration, visualization, interpretation, and study notes.
 
 ## 실험 원칙
 
@@ -116,6 +117,13 @@ docs/dataset-plan.md
 ## Planned Folder Structure
 
 ```text
+notebooks/
+├─ README.md
+├─ 01_dataset_inspection.ipynb
+├─ 02_preprocessing_comparison.ipynb
+├─ 03_model_result_analysis.ipynb
+└─ 04_tokenizer_comparison.ipynb
+
 backend/ml/
 ├─ preprocess.py
 ├─ train_model.py
@@ -130,23 +138,57 @@ backend/ml/
    └─ .gitkeep
 ```
 
+Notebook topics are planned analysis spaces. They are not required to exist before the `.py` execution scripts are stable.
+
+## Notebook Usage Rule
+
+Use notebooks after a reproducible script has produced data or report files.
+
+Recommended flow:
+
+```text
+.py script creates CSV/report output
+-> .ipynb reads that output
+-> notebook explains, visualizes, and compares results
+```
+
+Do not rely on hidden notebook cell execution order for the main project pipeline.
+
+## 노트북 사용 규칙
+
+재실행 가능한 데이터 생성, 전처리, split, 모델 비교 실행은 `.py` 스크립트에 둔다.
+
+노트북은 `.py`가 만든 CSV나 report 파일을 읽어서 결과를 관찰하고, 그래프로 확인하고, 해석을 남기는 용도로 사용한다.
+
+권장 흐름:
+
+```text
+.py 스크립트가 CSV/report 생성
+-> .ipynb가 결과 파일 읽기
+-> 노트북에서 시각화, 비교, 해석 정리
+```
+
+프로젝트의 핵심 실행 흐름을 노트북 셀 실행 순서에 의존하지 않는다.
+
 ## First Experiment Steps
 
 1. Record the current baseline result.
 2. Create a common evaluation result table format.
-3. Compare `CountVectorizer` and `TfidfVectorizer` with `MultinomialNB`.
-4. Compare `MultinomialNB`, `ComplementNB`, `LogisticRegression`, and `LinearSVC`.
-5. Add tokenizer experiments only after the baseline comparison code is stable.
-6. Add SentencePiece after the simple tokenizer and model comparison flow is understood.
+3. Create fixed train/test split CSV files from the processed 5k dataset.
+4. Compare `CountVectorizer` and `TfidfVectorizer` with `MultinomialNB`.
+5. Compare `MultinomialNB`, `ComplementNB`, `LogisticRegression`, and `LinearSVC`.
+6. Add tokenizer experiments only after the baseline comparison code is stable.
+7. Add SentencePiece after the simple tokenizer and model comparison flow is understood.
 
 ## First Experiment Steps Korean Summary
 
 1. 현재 baseline 결과를 기록한다.
 2. 공통 평가 결과표 형식을 만든다.
-3. `MultinomialNB` 기준으로 `CountVectorizer`와 `TfidfVectorizer`를 비교한다.
-4. `MultinomialNB`, `ComplementNB`, `LogisticRegression`, `LinearSVC`를 비교한다.
-5. baseline 비교 코드가 안정화된 뒤 토큰화 실험을 추가한다.
-6. 단순 토큰화/모델 비교 흐름을 이해한 뒤 SentencePiece 실험을 추가한다.
+3. 전처리된 5k 데이터셋에서 고정 train/test split CSV 파일을 만든다.
+4. `MultinomialNB` 기준으로 `CountVectorizer`와 `TfidfVectorizer`를 비교한다.
+5. `MultinomialNB`, `ComplementNB`, `LogisticRegression`, `LinearSVC`를 비교한다.
+6. baseline 비교 코드가 안정화된 뒤 토큰화 실험을 추가한다.
+7. 단순 토큰화/모델 비교 흐름을 이해한 뒤 SentencePiece 실험을 추가한다.
 
 ## Result Table Draft
 
