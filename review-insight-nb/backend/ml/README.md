@@ -69,14 +69,21 @@ uv run python ml/train_model.py
 Input:
 
 ```text
-data/preprocessed_reviews.csv
+data/splits/nsmc_light_train.csv
 ```
 
 Output:
 
 ```text
+models/sentencepiece.model
 models/sentiment_model.joblib
 models/vectorizer.joblib
+```
+
+The current service model follows the selected experiment result:
+
+```text
+SentencePiece -> TfidfVectorizer -> LogisticRegression
 ```
 
 ## Experiments

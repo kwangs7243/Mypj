@@ -38,6 +38,7 @@ backend/ml/reports/*.txt
 !backend/ml/reports/.gitkeep
 
 # Tokenizer/model artifacts
+backend/models/*.vocab
 backend/ml/tokenizers/*.model
 backend/ml/tokenizers/*.vocab
 backend/ml/tokenizers/*.spm
