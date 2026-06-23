@@ -54,51 +54,42 @@ models: MultinomialNB, ComplementNB, LogisticRegression, LinearSVC
 report: backend/ml/reports/model_comparison_nsmc_light.csv
 ```
 
+Tracked summary:
+
+```text
+backend/ml/reports/tokenizer_comparison_nsmc.md
+backend/ml/reports/model_selection_visual_report.md
+```
+
 Run from backend root:
 
 ```bash
 uv run python ml/experiments/compare_models.py
 ```
 
-## Latest NSMC Baseline Result
+## Latest NSMC Tokenizer Result
 
-Using scikit-learn default tokenization:
-
-```text
-nsmc_korean_only
-best: TfidfVectorizer + ComplementNB
-accuracy: 0.8180
-macro_f1: 0.8180
-
-nsmc_light
-best: TfidfVectorizer + MultinomialNB
-accuracy: 0.8276
-macro_f1: 0.8276
-```
-
-This confirms that NSMC is useful enough for meaningful model comparison.
-
-The result also suggests that preserving English letters, numbers, punctuation, and symbols through `light` preprocessing helps slightly even with the current scikit-learn default tokenizer.
-
-## 최신 NSMC Baseline 결과
-
-scikit-learn 기본 토큰화를 사용한 결과:
+Current best results:
 
 ```text
-nsmc_korean_only
-best: TfidfVectorizer + ComplementNB
-accuracy: 0.8180
-macro_f1: 0.8180
-
-nsmc_light
-best: TfidfVectorizer + MultinomialNB
-accuracy: 0.8276
-macro_f1: 0.8276
+sklearn_default best: TfidfVectorizer + MultinomialNB, accuracy 0.8276, macro_f1 0.8276
+kiwi best: TfidfVectorizer + LogisticRegression, accuracy 0.8452, macro_f1 0.8452
+sentencepiece best: TfidfVectorizer + LogisticRegression, accuracy 0.8507, macro_f1 0.8506
 ```
 
-이 결과는 NSMC가 의미 있는 모델 비교에 충분히 유용하다는 것을 보여준다.
+SentencePiece currently performs best on NSMC.
 
-또한 현재 scikit-learn 기본 토큰화에서도 영어, 숫자, 문장부호, 기호를 보존하는 `light` 전처리가 약간 더 좋은 결과를 낼 수 있음을 보여준다.
+## 최신 NSMC 토크나이저 결과
+
+현재 최고 결과:
+
+```text
+sklearn_default best: TfidfVectorizer + MultinomialNB, accuracy 0.8276, macro_f1 0.8276
+kiwi best: TfidfVectorizer + LogisticRegression, accuracy 0.8452, macro_f1 0.8452
+sentencepiece best: TfidfVectorizer + LogisticRegression, accuracy 0.8507, macro_f1 0.8506
+```
+
+현재 NSMC에서는 SentencePiece가 가장 좋은 결과를 냈다.
 
 ## Planned Experiment Axes
 
@@ -152,9 +143,7 @@ backend/ml/
 
 ## Next Experiment Steps
 
-1. Keep NSMC baseline result as the first meaningful comparison.
-2. Add Korean morphological tokenizer support.
-3. Compare morphological tokenizer results against `sklearn_default`.
-4. Add SentencePiece tokenizer support.
-5. Compare SentencePiece results against morphological tokenizer and `sklearn_default`.
-6. Use notebooks to inspect token examples and report differences.
+1. Inspect tokenizer output examples in a notebook.
+2. Compare SentencePiece vocabulary sizes.
+3. Compare Kiwi full-token output against selected POS output.
+4. Decide whether the service model should be updated from the original MultinomialNB baseline.

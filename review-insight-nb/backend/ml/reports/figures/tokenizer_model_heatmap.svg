@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="430" viewBox="0 0 820 430">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="410" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">Macro F1 by Tokenizer / Vectorizer / Model</text>
+<text x="212.5" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">MNB</text>
+<text x="357.5" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">CNB</text>
+<text x="502.5" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">LogReg</text>
+<text x="647.5" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#374151">LinearSVC</text>
+<text x="128" y="99" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">sklearn/count</text>
+<rect x="140" y="70" width="139" height="42" rx="4" fill="rgb(152,183,246)" stroke="#e5e7eb"/>
+<text x="209.5" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8258</text>
+<rect x="285" y="70" width="139" height="42" rx="4" fill="rgb(152,183,246)" stroke="#e5e7eb"/>
+<text x="354.5" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8257</text>
+<rect x="430" y="70" width="139" height="42" rx="4" fill="rgb(202,219,251)" stroke="#e5e7eb"/>
+<text x="499.5" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8145</text>
+<rect x="575" y="70" width="139" height="42" rx="4" fill="rgb(236,244,255)" stroke="#e5e7eb"/>
+<text x="644.5" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8067</text>
+<text x="128" y="147" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">sklearn/tfidf</text>
+<rect x="140" y="118" width="139" height="42" rx="4" fill="rgb(144,177,246)" stroke="#e5e7eb"/>
+<text x="209.5" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8276</text>
+<rect x="285" y="118" width="139" height="42" rx="4" fill="rgb(145,177,246)" stroke="#e5e7eb"/>
+<text x="354.5" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8275</text>
+<rect x="430" y="118" width="139" height="42" rx="4" fill="rgb(210,225,252)" stroke="#e5e7eb"/>
+<text x="499.5" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8126</text>
+<rect x="575" y="118" width="139" height="42" rx="4" fill="rgb(195,214,251)" stroke="#e5e7eb"/>
+<text x="644.5" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8160</text>
+<text x="128" y="195" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">kiwi/count</text>
+<rect x="140" y="166" width="139" height="42" rx="4" fill="rgb(127,164,244)" stroke="#e5e7eb"/>
+<text x="209.5" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8316</text>
+<rect x="285" y="166" width="139" height="42" rx="4" fill="rgb(126,164,244)" stroke="#e5e7eb"/>
+<text x="354.5" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8317</text>
+<rect x="430" y="166" width="139" height="42" rx="4" fill="rgb(75,127,239)" stroke="#e5e7eb"/>
+<text x="499.5" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8433</text>
+<rect x="575" y="166" width="139" height="42" rx="4" fill="rgb(123,162,244)" stroke="#e5e7eb"/>
+<text x="644.5" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8324</text>
+<text x="128" y="243" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">kiwi/tfidf</text>
+<rect x="140" y="214" width="139" height="42" rx="4" fill="rgb(108,150,242)" stroke="#e5e7eb"/>
+<text x="209.5" y="241" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8359</text>
+<rect x="285" y="214" width="139" height="42" rx="4" fill="rgb(108,150,242)" stroke="#e5e7eb"/>
+<text x="354.5" y="241" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8359</text>
+<rect x="430" y="214" width="139" height="42" rx="4" fill="rgb(67,121,238)" stroke="#e5e7eb"/>
+<text x="499.5" y="241" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8452</text>
+<rect x="575" y="214" width="139" height="42" rx="4" fill="rgb(88,136,240)" stroke="#e5e7eb"/>
+<text x="644.5" y="241" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8403</text>
+<text x="128" y="291" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">spm/count</text>
+<rect x="140" y="262" width="139" height="42" rx="4" fill="rgb(79,129,239)" stroke="#e5e7eb"/>
+<text x="209.5" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8425</text>
+<rect x="285" y="262" width="139" height="42" rx="4" fill="rgb(78,129,239)" stroke="#e5e7eb"/>
+<text x="354.5" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8426</text>
+<rect x="430" y="262" width="139" height="42" rx="4" fill="rgb(59,115,237)" stroke="#e5e7eb"/>
+<text x="499.5" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8471</text>
+<rect x="575" y="262" width="139" height="42" rx="4" fill="rgb(73,125,239)" stroke="#e5e7eb"/>
+<text x="644.5" y="289" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8438</text>
+<text x="128" y="339" text-anchor="end" font-family="Arial, sans-serif" font-size="13" fill="#374151">spm/tfidf</text>
+<rect x="140" y="310" width="139" height="42" rx="4" fill="rgb(66,120,238)" stroke="#e5e7eb"/>
+<text x="209.5" y="337" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8454</text>
+<rect x="285" y="310" width="139" height="42" rx="4" fill="rgb(66,120,238)" stroke="#e5e7eb"/>
+<text x="354.5" y="337" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8455</text>
+<rect x="430" y="310" width="139" height="42" rx="4" fill="rgb(43,103,236)" stroke="#e5e7eb"/>
+<text x="499.5" y="337" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8506</text>
+<rect x="575" y="310" width="139" height="42" rx="4" fill="rgb(52,110,236)" stroke="#e5e7eb"/>
+<text x="644.5" y="337" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">0.8486</text>
+<text x="140" y="390" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Darker cells indicate higher test Macro F1. Best: spm/tfidf + LogReg = 0.8506.</text>
+</svg>

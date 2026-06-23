@@ -1,12 +1,37 @@
 # Tokenizers
 
-Tokenizer-specific helpers will live here later.
+Tokenizer-specific helpers live here.
 
-Planned candidates:
+Implemented tokenizer options:
 
-- default vectorizer tokenization
-- Korean morphological analyzer tokenization
-- SentencePiece tokenization
+```text
+sklearn_default
+kiwi
+sentencepiece
+```
 
-Do not add tokenizer complexity before the baseline model comparison is stable.
+## Kiwi
 
+`kiwi` uses `kiwipiepy` for Korean morphological tokenization.
+
+Run model comparison with:
+
+```bash
+uv run python ml/experiments/compare_models.py --dataset-name nsmc_korean_only --train data/splits/nsmc_korean_only_train.csv --test data/splits/nsmc_korean_only_test.csv --tokenizer kiwi --output ml/reports/model_comparison_nsmc_kiwi.csv
+```
+
+## SentencePiece
+
+Train SentencePiece first:
+
+```bash
+uv run python ml/tokenizers/train_sentencepiece.py
+```
+
+Then run model comparison:
+
+```bash
+uv run python ml/experiments/compare_models.py --dataset-name nsmc_light --tokenizer sentencepiece --output ml/reports/model_comparison_nsmc_sentencepiece.csv
+```
+
+SentencePiece `.model`, `.vocab`, and training text files are ignored by Git because they are reproducible artifacts.

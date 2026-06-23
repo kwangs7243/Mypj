@@ -69,3 +69,25 @@ ml/reports/model_comparison_nsmc_light.csv
 
 The first comparison intentionally uses scikit-learn's default tokenization as a baseline only.
 The target experiment direction is to replace the tokenizer later with Korean morphological tokenization and SentencePiece tokenization while keeping the same vectorizer/model comparison structure.
+
+Tokenizer options:
+
+```text
+sklearn_default
+kiwi
+sentencepiece
+```
+
+The report records train/test metrics and their generalization gaps:
+
+```text
+accuracy
+macro_precision
+macro_recall
+macro_f1
+weighted_f1
+roc_auc
+```
+
+For the current Korean sentiment comparison, `test_macro_f1` is the primary model selection metric.
+`test_accuracy`, `test_roc_auc`, and train-test gaps are used as supporting evidence.

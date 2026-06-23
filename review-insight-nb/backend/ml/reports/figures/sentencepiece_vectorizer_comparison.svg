@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="420" viewBox="0 0 880 420">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="440" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">SentencePiece: Count vs TF-IDF</text>
+<line x1="90" y1="340" x2="850" y2="340" stroke="#e5e7eb"/>
+<text x="82" y="344" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">0.8383</text>
+<line x1="90" y1="268.75" x2="850" y2="268.75" stroke="#e5e7eb"/>
+<text x="82" y="272.75" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">0.8456</text>
+<line x1="90" y1="197.5" x2="850" y2="197.5" stroke="#e5e7eb"/>
+<text x="82" y="201.5" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">0.8529</text>
+<line x1="90" y1="126.25" x2="850" y2="126.25" stroke="#e5e7eb"/>
+<text x="82" y="130.25" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">0.8603</text>
+<line x1="90" y1="55" x2="850" y2="55" stroke="#e5e7eb"/>
+<text x="82" y="59" text-anchor="end" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">0.8676</text>
+<rect x="151" y="299.0594042524174" width="30" height="40.94059574758262" rx="3" fill="#2563eb"/>
+<text x="166" y="294.0594042524174" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8425</text>
+<rect x="185" y="270.8747804736656" width="30" height="69.12521952633438" rx="3" fill="#16a34a"/>
+<text x="200" y="265.8747804736656" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8454</text>
+<text x="185" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">MNB</text>
+<rect x="341" y="298.0875206738398" width="30" height="41.91247932616022" rx="3" fill="#2563eb"/>
+<text x="356" y="293.0875206738398" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8426</text>
+<rect x="375" y="269.90289689508813" width="30" height="70.09710310491187" rx="3" fill="#16a34a"/>
+<text x="390" y="264.90289689508813" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8455</text>
+<text x="375" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">CNB</text>
+<rect x="531" y="254.35275963784648" width="30" height="85.64724036215352" rx="3" fill="#2563eb"/>
+<text x="546" y="249.35275963784648" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8471</text>
+<rect x="565" y="220.33683438762847" width="30" height="119.66316561237153" rx="3" fill="#16a34a"/>
+<text x="580" y="215.33683438762847" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8506</text>
+<text x="565" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">LogReg</text>
+<rect x="721" y="286.4249177309083" width="30" height="53.575082269091695" rx="3" fill="#2563eb"/>
+<text x="736" y="281.4249177309083" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8438</text>
+<rect x="755" y="239.7745059591813" width="30" height="100.22549404081869" rx="3" fill="#16a34a"/>
+<text x="770" y="234.7745059591813" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#374151">0.8486</text>
+<text x="755" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#374151">LinearSVC</text>
+<rect x="90" y="395" width="12" height="12" fill="#2563eb"/>
+<text x="108" y="405" font-family="Arial, sans-serif" font-size="12" fill="#374151">Count</text>
+<rect x="240" y="395" width="12" height="12" fill="#16a34a"/>
+<text x="258" y="405" font-family="Arial, sans-serif" font-size="12" fill="#374151">TF-IDF</text>
+<text x="90" y="414" font-family="Arial, sans-serif" font-size="11" fill="#6b7280">TF-IDF is higher for every model in this experiment.</text>
+</svg>
