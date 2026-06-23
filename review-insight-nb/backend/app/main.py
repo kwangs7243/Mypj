@@ -12,7 +12,7 @@ from app.services.sentiment_service import predict_sentiment
 
 app = FastAPI(
     title="Review Insight NB API",
-    description="Review sentiment analysis API with a Naive Bayes model",
+    description="Review sentiment analysis API with a SentencePiece and Logistic Regression model",
     version="0.1.0",
 )
 

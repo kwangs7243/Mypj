@@ -7,7 +7,9 @@ class HealthResponse(BaseModel):
 
 class ModelInfoResponse(BaseModel):
     model: str
+    tokenizer: str
     vectorizer: str
+    preprocessing: str
     status: str
     trained: bool
 

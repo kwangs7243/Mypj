@@ -44,7 +44,7 @@ async function loadModelStatus() {
   try {
     const response = await fetch(`${API_BASE_URL}/api/model-info`);
     const modelInfo = await response.json();
-    modelStatus.textContent = `Model status: ${modelInfo.status}`;
+    modelStatus.textContent = `Model status: ${modelInfo.status} (${modelInfo.model})`;
   } catch {
     modelStatus.textContent = "Model status: backend unavailable";
   }

@@ -48,7 +48,7 @@ Response:
 
 ### Model Info
 
-This endpoint reports whether the saved Naive Bayes model artifacts are available.
+This endpoint reports whether the saved service model artifacts are available.
 
 ```http
 GET /api/model-info
@@ -58,8 +58,10 @@ Response:
 
 ```json
 {
-  "model": "Multinomial Naive Bayes",
+  "model": "Logistic Regression",
+  "tokenizer": "SentencePiece",
   "vectorizer": "TfidfVectorizer",
+  "preprocessing": "light",
   "status": "trained",
   "trained": true
 }
@@ -67,7 +69,7 @@ Response:
 
 ### Predict Sentiment
 
-This endpoint uses the saved `TfidfVectorizer` and `MultinomialNB` model artifacts.
+This endpoint uses the saved `SentencePiece`, `TfidfVectorizer`, and `LogisticRegression` artifacts.
 
 ```http
 POST /api/predict
@@ -137,21 +139,30 @@ data/preprocessed_reviews.csv
 Run from the backend root:
 
 ```bash
+uv run python ml/tokenizers/train_sentencepiece.py --model-prefix models/sentencepiece
 uv run python ml/train_model.py
 ```
 
 Input:
 
 ```text
-data/preprocessed_reviews.csv
+data/splits/nsmc_light_train.csv
 ```
 
 Output:
 
 ```text
+models/sentencepiece.model
 models/sentiment_model.joblib
 models/vectorizer.joblib
 ```
 
-The current sample dataset is intentionally small, so evaluation scores are only a pipeline check for now.
+The current service model uses the model-experiment result:
+
+```text
+preprocessing: light
+tokenizer: SentencePiece
+vectorizer: TfidfVectorizer
+model: LogisticRegression
+```
 
