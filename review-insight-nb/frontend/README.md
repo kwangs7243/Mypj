@@ -24,9 +24,12 @@ frontend/index.html
 - Review input textarea
 - Analyze button
 - Model status display
+- Model detail display
+- Positive and negative sample buttons
 - Prediction label
 - Confidence
 - Positive and negative probabilities
+- Probability bars
 - Basic error message area
 - Frontend validation for empty input and input with no Korean characters
 

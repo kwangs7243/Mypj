@@ -11,10 +11,13 @@
       <section class="workspace" aria-labelledby="page-title">
         <div class="header">
           <div>
-            <p class="eyebrow">Naive Bayes Sentiment API</p>
+            <p class="eyebrow">Korean Review Sentiment API</p>
             <h1 id="page-title">Review Insight NB</h1>
           </div>
-          <p id="model-status" class="status">Model status: checking...</p>
+          <div class="status-box" aria-live="polite">
+            <p id="model-status" class="status">Model status: checking...</p>
+            <p id="model-detail" class="model-detail">Loading model details...</p>
+          </div>
         </div>
 
         <form id="review-form" class="review-form">
@@ -25,13 +28,21 @@
             rows="7"
             placeholder="예: 배송이 빠르고 제품이 좋아요"
           ></textarea>
+          <div class="sample-actions" aria-label="Sample reviews">
+            <button class="sample-button" type="button" data-sample="진짜 재밌고 배우 연기가 좋아요">
+              긍정 예시
+            </button>
+            <button class="sample-button" type="button" data-sample="지루하고 최악이라 다시 보고 싶지 않아요">
+              부정 예시
+            </button>
+          </div>
           <div class="actions">
             <button id="analyze-button" type="submit">Analyze</button>
             <p id="form-message" class="message" role="status"></p>
           </div>
         </form>
 
-        <section id="result-panel" class="result-panel" hidden>
+        <section id="result-panel" class="result-panel" aria-live="polite" hidden>
           <h2>Prediction Result</h2>
           <dl class="result-grid">
             <div>
@@ -51,6 +62,26 @@
               <dd id="result-positive">-</dd>
             </div>
           </dl>
+          <div class="probability-bars" aria-label="Prediction probabilities">
+            <div class="probability-row">
+              <div class="probability-meta">
+                <span>부정</span>
+                <span id="negative-bar-value">-</span>
+              </div>
+              <div class="bar-track">
+                <span id="negative-bar" class="bar-fill negative-bar"></span>
+              </div>
+            </div>
+            <div class="probability-row">
+              <div class="probability-meta">
+                <span>긍정</span>
+                <span id="positive-bar-value">-</span>
+              </div>
+              <div class="bar-track">
+                <span id="positive-bar" class="bar-fill positive-bar"></span>
+              </div>
+            </div>
+          </div>
         </section>
       </section>
     </main>
