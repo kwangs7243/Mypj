@@ -1,35 +1,23 @@
 # Splits
 
-Saved train/test split files or split metadata will live here.
+Fixed train/test CSV files live here.
 
-Keeping split information stable helps compare models fairly.
-
-Planned examples:
+Current NSMC outputs:
 
 ```text
-sample_5k_split_seed42.json
-sample_20k_split_seed42.json
+nsmc_korean_only_train.csv
+nsmc_korean_only_test.csv
+nsmc_light_train.csv
+nsmc_light_test.csv
 ```
 
-Current first experiment outputs:
-
-```text
-korean_only_5k_train.csv
-korean_only_5k_test.csv
-light_clean_5k_train.csv
-light_clean_5k_test.csv
-```
+NSMC already provides `ratings_train.txt` and `ratings_test.txt`, so these files are converted from the original train/test split instead of being randomly split inside this project.
 
 Run from the backend root:
 
 ```bash
-uv run python ml/experiments/split_dataset.py
+uv run python ml/experiments/convert_nsmc_dataset.py
+uv run python ml/experiments/convert_nsmc_dataset.py --mode light --train-output data/splits/nsmc_light_train.csv --test-output data/splits/nsmc_light_test.csv
 ```
 
-The default command splits `data/processed/korean_only_5k.csv` into train/test CSV files with `test_size=0.2` and `seed=42`.
-
-For another processed dataset, pass explicit paths:
-
-```bash
-uv run python ml/experiments/split_dataset.py --input data/processed/light_clean_5k.csv --train-output data/splits/light_clean_5k_train.csv --test-output data/splits/light_clean_5k_test.csv
-```
+Large split CSV files are ignored by Git.

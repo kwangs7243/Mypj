@@ -16,18 +16,15 @@ dist/
 .env
 .env.local
 
-# Data and generated artifacts
+# Data and reproducible artifacts
 *.log
 
 # Large or reproducible datasets
 backend/data/raw/*
-backend/data/generated/*
 backend/data/processed/*
 backend/data/splits/*
 !backend/data/raw/.gitkeep
 !backend/data/raw/README.md
-!backend/data/generated/.gitkeep
-!backend/data/generated/README.md
 !backend/data/processed/.gitkeep
 !backend/data/processed/README.md
 !backend/data/splits/.gitkeep

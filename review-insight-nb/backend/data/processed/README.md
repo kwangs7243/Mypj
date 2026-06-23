@@ -1,15 +1,16 @@
 # Processed Data
 
-Preprocessed experiment datasets will live here.
+Preprocessed intermediate datasets live here when a workflow needs a separate processed file.
 
-Examples:
+The current NSMC workflow writes converted train/test files directly to `data/splits/`, because NSMC already provides fixed train/test source files.
+
+Expected future examples:
 
 ```text
-korean_only_5k.csv
-korean_only_20k.csv
-morph_tokenized_5k.csv
-sentencepiece_5k.csv
+nsmc_morph_train.csv
+nsmc_morph_test.csv
+nsmc_sentencepiece_train.csv
+nsmc_sentencepiece_test.csv
 ```
 
-Each processed file should document or clearly imply the preprocessing rule used to create it.
-
+Large processed CSV files are ignored by Git.

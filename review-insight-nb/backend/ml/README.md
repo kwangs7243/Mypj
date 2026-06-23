@@ -52,14 +52,11 @@ Mode meaning:
 - `korean_only`: keep only Korean characters and whitespace. This matches the current service baseline and is useful before simple Korean-only vectorization or a Korean morphological analyzer.
 - `light`: normalize spacing only and keep English, numbers, punctuation, and symbols. This is intended for later SentencePiece-style experiments where subword tokenization should see the original noisy text.
 
-Generated 5k dataset example:
+The active model-experiment dataset is NSMC. NSMC conversion lives in:
 
-```bash
-uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/korean_only_5k.csv --mode korean_only
-uv run python ml/preprocess.py --input data/generated/generated_reviews_5k.csv --output data/processed/light_clean_5k.csv --mode light
+```text
+ml/experiments/convert_nsmc_dataset.py
 ```
-
-Both output files are ignored by Git.
 
 ## Training
 

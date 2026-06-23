@@ -2,7 +2,7 @@
 
 This folder is for exploratory analysis, result interpretation, visualization, and study notes.
 
-Notebook files should not become the main execution pipeline. Reproducible steps should be implemented in `.py` scripts first, then notebooks should read the generated CSV/report files and explain the results.
+Notebook files should not become the main execution pipeline. Reproducible steps should be implemented in `.py` scripts first, then notebooks should read the CSV/report files and explain the results.
 
 ## Role Split
 
@@ -61,7 +61,7 @@ These files are planned topics, not required immediate implementation.
 
 `01_dataset_inspection.ipynb`
 
-- Inspect generated and later real review datasets.
+- Inspect NSMC and later real review datasets.
 - Check label counts, duplicate rows, null values, and text length distribution.
 
 `02_preprocessing_comparison.ipynb`

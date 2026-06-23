@@ -12,10 +12,10 @@ from sklearn.svm import LinearSVC
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-DEFAULT_TRAIN_PATH = BASE_DIR / "data" / "splits" / "korean_only_5k_train.csv"
-DEFAULT_TEST_PATH = BASE_DIR / "data" / "splits" / "korean_only_5k_test.csv"
-DEFAULT_REPORT_PATH = BASE_DIR / "ml" / "reports" / "model_comparison_5k.csv"
-DEFAULT_DATASET_NAME = "korean_only_5k"
+DEFAULT_TRAIN_PATH = BASE_DIR / "data" / "splits" / "nsmc_light_train.csv"
+DEFAULT_TEST_PATH = BASE_DIR / "data" / "splits" / "nsmc_light_test.csv"
+DEFAULT_REPORT_PATH = BASE_DIR / "ml" / "reports" / "model_comparison_nsmc_light.csv"
+DEFAULT_DATASET_NAME = "nsmc_light"
 REQUIRED_COLUMNS = {"text", "label"}
 
 
