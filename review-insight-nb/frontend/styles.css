@@ -112,26 +112,6 @@ textarea:focus {
   outline: 3px solid #bfdbfe;
 }
 
-.sample-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.sample-button {
-  border: 1px solid #bcc8d4;
-  border-radius: 6px;
-  background: #f7fafc;
-  color: #405568;
-  padding: 8px 11px;
-}
-
-.sample-button:hover {
-  border-color: #2563eb;
-  color: #174ea6;
-}
-
 .actions {
   display: flex;
   gap: 14px;

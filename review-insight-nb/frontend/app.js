@@ -15,7 +15,6 @@ const negativeBar = document.querySelector("#negative-bar");
 const positiveBar = document.querySelector("#positive-bar");
 const negativeBarValue = document.querySelector("#negative-bar-value");
 const positiveBarValue = document.querySelector("#positive-bar-value");
-const sampleButtons = document.querySelectorAll(".sample-button");
 
 function formatPercent(value) {
   return `${(value * 100).toFixed(1)}%`;
@@ -23,10 +22,6 @@ function formatPercent(value) {
 
 function formatLabel(label) {
   return label === "positive" ? "긍정" : "부정";
-}
-
-function containsKorean(text) {
-  return /[가-힣]/.test(text);
 }
 
 function setMessage(message) {
@@ -103,12 +98,6 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (!containsKorean(text)) {
-    setMessage("한글 리뷰를 입력해 주세요.");
-    clearResult();
-    return;
-  }
-
   try {
     setLoading(true);
     const prediction = await requestPrediction(text);
@@ -119,15 +108,6 @@ form.addEventListener("submit", async (event) => {
   } finally {
     setLoading(false);
   }
-});
-
-sampleButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    reviewText.value = button.dataset.sample;
-    reviewText.focus();
-    setMessage("");
-    clearResult();
-  });
 });
 
 loadModelStatus();
