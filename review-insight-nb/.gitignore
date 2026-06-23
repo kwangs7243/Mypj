@@ -4,6 +4,8 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
 
 # Node
 node_modules/
@@ -14,8 +16,36 @@ dist/
 .env
 .env.local
 
-# Data and generated artifacts
+# Data and reproducible artifacts
 *.log
+
+# Large or reproducible datasets
+backend/data/raw/*
+backend/data/processed/*
+backend/data/splits/*
+!backend/data/raw/.gitkeep
+!backend/data/raw/README.md
+!backend/data/processed/.gitkeep
+!backend/data/processed/README.md
+!backend/data/splits/.gitkeep
+!backend/data/splits/README.md
+
+# Experiment outputs
+backend/ml/reports/*.csv
+backend/ml/reports/*.json
+backend/ml/reports/*.txt
+!backend/ml/reports/README.md
+!backend/ml/reports/.gitkeep
+
+# Tokenizer/model artifacts
+backend/ml/tokenizers/*.model
+backend/ml/tokenizers/*.vocab
+backend/ml/tokenizers/*.spm
+backend/ml/tokenizers/*.txt
+!backend/ml/tokenizers/README.md
+!backend/ml/tokenizers/.gitkeep
+!backend/ml/tokenizers/*_sample.vocab
+!backend/ml/tokenizers/*_limited.vocab
 
 # OS
 .DS_Store

@@ -8,6 +8,12 @@ Planned files:
 - `train_model.py`
 - `evaluate.py`
 
+Planned experiment folders:
+
+- `experiments/`
+- `tokenizers/`
+- `reports/`
+
 ## Preprocessing
 
 Run from the backend root:
@@ -28,11 +34,29 @@ Output:
 data/preprocessed_reviews.csv
 ```
 
-Current rule:
+Default rule:
 
 - Keep only Korean characters and whitespace.
 - Remove English letters, numbers, punctuation, emojis, and other symbols.
 - Add Korean tokenization later only if the first model needs it.
+
+The preprocessing script now supports explicit modes:
+
+```bash
+uv run python ml/preprocess.py --mode korean_only
+uv run python ml/preprocess.py --mode light
+```
+
+Mode meaning:
+
+- `korean_only`: keep only Korean characters and whitespace. This matches the current service baseline and is useful before simple Korean-only vectorization or a Korean morphological analyzer.
+- `light`: normalize spacing only and keep English, numbers, punctuation, and symbols. This is intended for later SentencePiece-style experiments where subword tokenization should see the original noisy text.
+
+The active model-experiment dataset is NSMC. NSMC conversion lives in:
+
+```text
+ml/experiments/convert_nsmc_dataset.py
+```
 
 ## Training
 
@@ -53,5 +77,22 @@ Output:
 ```text
 models/sentiment_model.joblib
 models/vectorizer.joblib
+```
+
+## Experiments
+
+The first web-service MVP uses one baseline model. Later model analysis work should live under:
+
+```text
+ml/experiments/
+ml/tokenizers/
+ml/reports/
+```
+
+See:
+
+```text
+docs/model-experiment-plan.md
+docs/dataset-plan.md
 ```
 
